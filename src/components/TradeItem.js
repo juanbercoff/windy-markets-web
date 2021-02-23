@@ -1,6 +1,5 @@
 import React from 'react';
 import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
-import { useHistory } from "react-router-dom";
 
 const months = [
     'Jan',

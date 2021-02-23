@@ -22,7 +22,7 @@ const TradesList = () => {
     
     useEffect(() => {
         const getData = () => {
-            return fetch('http://3a2d47845b10.ngrok.io/api/trades/all')
+            return fetch('http://f8d0c169b759.ngrok.io/api/trades/all')
             .then(res => {
                 if(res.ok) {
                     
@@ -36,13 +36,22 @@ const TradesList = () => {
         getData();
     }, [])
     return (
-        <section className="row justify-content-center">
-            <section className="col-12 col-sm-6 col-md-4">
-                <ul className="list-group">
-                    {listTrades}
-                </ul>
-            </section>
-        </section>
+        <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title m-b-0">Current Trades</h4>
+                    </div>
+                    <section className="row justify-content-center">
+                        <section className="col" >
+                            <ul className="list-group">
+                                {listTrades}
+                            </ul>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
     )
 }
 

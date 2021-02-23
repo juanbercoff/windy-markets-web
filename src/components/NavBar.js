@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../public/images/logo.png'
+import logo from '../public/images/logoBlackTransparent.png'
 
 function NavBar() {   
       return (
@@ -12,9 +12,9 @@ function NavBar() {
                 <ul class="nav-links">
                     {/* TODO Hamburger menu when viewport is too small */} 
                     <li><a class='nav-link' href='/home'>Home</a></li>
-                    <li><a class='nav-link' href='/home'>Options</a></li>
                     <li><a class='nav-link' href='/home'>What we do</a></li>
-                    <li><a class='nav-link' href='/home'>Disclaimer</a></li>
+                    <li><a class='nav-link' href='/home'>Open trades</a></li>
+                    <li><a class='nav-link' href='/home'>Past trades</a></li>
                 </ul>
             </nav>
         </header>

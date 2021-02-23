@@ -5,9 +5,8 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Libre Franklin', sans-serif;
   transition: all 0.5s ease;
-  background: #383a3d;
 }
 
 /* Login */
@@ -31,11 +30,13 @@ form{
 
 .logo-container, .nav-links {
   display: flex;
+  
 }
 
 .logo {
-  font-weight: 400;
+  font-weight: 300;
   margin: 5px;
+  color: #FFFFFF;
 }
 
 .nav-links {
@@ -44,9 +45,12 @@ form{
 }
 
 .nav-link {
-  color: #0404ac;
+  color: #6F7172;
   font-size: 18px;
   text-decoration: none;
+}
+.nav-link:hover {
+  color:#FFFFFF
 }
 
 .logo-container {
@@ -61,6 +65,11 @@ nav {
 /* Sections  */
 
   /* Presentation  */
+.home-container {
+  background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%);
+}
+
+
 
 .presentation {
   display: flex;
@@ -72,12 +81,13 @@ nav {
 
 .introduction  {
   flex: 1;
+  
 }
 
 .intro-text h1{
   font-size: 44px;
-  font-weight: 400;
-  background: linear-gradient(to right, #1c4997, #0404ac);
+  font-weight: 500;
+  background: #FFFFFF;
   -webkit-background-clip: text;
   -webkit-text-fill-color:  transparent;
 }
@@ -85,7 +95,8 @@ nav {
 .intro-text p {
   margin-top: 5px;
   font-size: 22px;
-  color: #0404ac
+  font-weight: 200;
+  color: #FFFFFF
 }
 
 /* .cover {
@@ -108,42 +119,46 @@ nav {
 }
 
 .cta-select {
-  border: 2px solid #02E467;
-  background: transparent;
+  
+  background: rgb(25, 28, 31);
   width: 150px;
   height: 50px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  color: #0404ac;
+  color: #FFFFFF;
+  border-radius: 10%;
 }
 
 .big-circle {
   position: absolute;
   top: 0px;
   right: 0px;
-  z-index: -1;
-  opacity: 0.5;
+  opacity: 0.2;
   height: 80%;
+  pointer-events:none;
 }
 
 .medium-circle {
   position: absolute;
   top: 30%;
   right: 30%;
-  z-index: -1;
   height: 60%;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 .small-circle {
   position: absolute;
   bottom: 0%;
   left: 20%;
-  z-index: -1;
+  opacity: 0.8;
 }
 
   /* Options  */
+
+.whatWeDo-container {
+  background-color:#000000
+}
 
 .options {
   display: flex;
@@ -157,6 +172,7 @@ nav {
 .options-text {
   flex: 1;
   text-align: center;
+  
 }
 
 .options-text h1{
@@ -169,8 +185,9 @@ nav {
 
 .options-text p {
   margin-top: 5px;
-  font-size: 22px;
-  color: #585772
+  font-size: 16px;
+  font-weight: 100;
+  color: #FFFFFF
 }
 
 .options-cover {
@@ -221,4 +238,8 @@ nav {
   .big-circle, .medium-circle, .small-circle {
       opacity: 0.1;
   }
+}
+
+.trade-list-container {
+  background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%);
 }
