@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import TradeItem from './TradeItem';
+import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
+
 
 const TradesList = () => {
     let history = useHistory();
@@ -15,6 +17,7 @@ const TradesList = () => {
 
     const listTrades = data.map((trade) => {
         return (
+
             <TradeItem value={trade} handleClick={()=>handleClick(trade)} key={trade.id.toString()}/>
         )  
     })
@@ -22,7 +25,7 @@ const TradesList = () => {
     
     useEffect(() => {
         const getData = () => {
-            return fetch('http://f8d0c169b759.ngrok.io/api/trades/all')
+            return fetch('/api/trades/all', {method: 'GET', credentials: "include"})
             .then(res => {
                 if(res.ok) {
                     
@@ -36,7 +39,7 @@ const TradesList = () => {
         getData();
     }, [])
     return (
-        <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
+/*         <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body text-center">
@@ -50,6 +53,24 @@ const TradesList = () => {
                         </section>
                     </section>
                 </div>
+            </div>
+        </div> */
+        <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
+            <div class="col-lg-4">
+                <table class="table table-hover table-striped table-dark">
+                    <thead>
+                        <tr>
+                        <th scope="col">Buying</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Strike</th>
+                        <th scope="col">Exp. Date</th>
+                        <th scope="col">Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listTrades}
+                    </tbody>
+                </table>
             </div>
         </div>
     )

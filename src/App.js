@@ -1,5 +1,5 @@
 import './App.css';
-
+import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './components/Login';
 import TradeForm from './components/TradeForm';
@@ -11,7 +11,7 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div className='body-container'>
       
       <Switch>
         <Route path="/login">
@@ -27,6 +27,7 @@ function App() {
           <TradesList/> 
         </Route>  
         <Route path="/">
+          <NavBar/>
           <Home />
           <WhatWeDo/>
         </Route>

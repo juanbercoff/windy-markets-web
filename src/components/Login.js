@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { useHistory } from "react-router-dom";
+import FormGroup from './FormGroup'
 
 
 
@@ -11,7 +12,7 @@ const Login = () => {
 
     const loginHandler = (data) => {
         //TODO input validation
-        return fetch('http://3a2d47845b10.ngrok.io/api/user/login', {
+        return fetch('/api/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email: data.email, password: data.password})
@@ -31,9 +32,9 @@ const Login = () => {
     }
     
     return (
-        <section class="container-fluid">
-            <section class="row justify-content-center">
-                <section class="col-12 col-sm-6 col-md-4">
+        <section className="container-fluid">
+            <section className="row justify-content-center">
+                <section className="col-12 col-sm-6 col-md-4">
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         validate={values => {
@@ -62,34 +63,13 @@ const Login = () => {
                         handleSubmit,
                         isSubmitting,
                         }) => (
-                        <form class="form-container" onSubmit={handleSubmit}>
-                            <div class="form-group">
-                                <h4 class="text-center font-weight-bold"> Login </h4>
-                                <label for="InputEmail1">Email Address</label>
-                                <input
-                                    class="form-control"
-                                    type="email"
-                                    name="email"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                />
-                                </div>
+                        <form className="form-container" onSubmit={handleSubmit}>
+                            <FormGroup label='Email' type='email' name='email' onChange={handleChange} onBlur={handleBlur} value={values.email}/>
                             {errors.email && touched.email && errors.email}
-                            <div class="form-group">
-                                <label for="InputPassword1">Password</label>
-                                <input
-                                    class="form-control"
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                />
-                                {errors.password && touched.password && errors.password}
-                            </div>
-                            <div class="row justify-content-center">
-                                <button class="btn btn-primary btn-block" type="submit" disabled={isSubmitting}>
+                            <FormGroup label='Password' type='password' name='password' onChange={handleChange} onBlur={handleBlur} value={values.password}/>
+                            {errors.password && touched.password && errors.password}
+                            <div className="row justify-content-center">
+                                <button className="btn btn-primary btn-block" type="submit" disabled={isSubmitting}>
                                 Submit
                                 </button>
                             </div>

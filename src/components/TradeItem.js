@@ -28,12 +28,16 @@ const TradeItem = ({value, handleClick}) => {
     }
 
     return (
-    <div>
-        <li className="list-group-item list-group-item-action" onClick={handleClick}>
-            Buying {value.contractType} options of {value.stock} strike {value.strike} for {formatDate(value.expirationDate)}
-        <img src={image} width='100%' height='auto' alt='trade'/>
-        </li>
-    </div>
+
+        <tr class="w-25">
+            <td>{value.contractType}</td>
+            <td>{value.stock}</td>
+            <td>{value.strike}</td>
+            <td>{formatDate(value.expirationDate)}</td>
+            <td><img src={image} width='70%' height='auto' alt='trade'/>
+        </td>
+        </tr>
+
     )
 }
 

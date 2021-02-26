@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './NavBar'
 
 import bigCircle from '../public/images/big-eclipse.svg'
 import mediumCircle from '../public/images/mid-eclipse.svg'
@@ -7,13 +6,13 @@ import smallCircle from '../public/images/small-eclipse.svg'
 
 function Home() {
     return (
-        <div className='home-container'>
-            <NavBar/>
+        <div className='home-container' id='home'>
+
             <section className="presentation">
                 <div className="introduction">
                     <div className="intro-text">
                         <h1>Follow the shift</h1>
-                        <p>With a personalized strategy,<br/> our trading algorithm will uncover new possibilities</p>
+                        {/* <p>With a personalized strategy,<br/> our trading algorithm will uncover new possibilities</p> */}
                     </div>
     {/*                 <div className="cta">
                         <button className="cta-select">Download the app</button>
