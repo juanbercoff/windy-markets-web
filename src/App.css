@@ -30,11 +30,13 @@ header {
   width: 90%;
   height: 10vh;
   padding-left: 10vh;
+  padding-top: 5vh;
   align-items: center;
   position: fixed;
   margin-top: 2vh;
- 
+  justify-content: flex-start;
 }
+
 
 .logo-container, .nav-links {
   display: flex;
@@ -52,22 +54,37 @@ header {
   margin-top: 17px;
 }
 
-.nav-links {
+.nav-links, .burger-nav-links {
   justify-content: space-around;
   list-style: none;
 }
 
-.nav-link {
+.nav-link, .burger-nav-link {
   color: #6F7172;
   font-size: 18px;
   text-decoration: none;
-}
-.nav-link:hover {
-  color:#FFFFFF
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
+
+
+.nav-link:hover {
+  color:#FFFFFF;
+}
+
+.burger-nav-link:hover {
+  color:#000000;
+  
+
+}
+
+
 .nav-container {
-  flex: 2
+  flex: 2;
+}
+
+.burger-nav-container {
+  display:none;
 }
 
 .burger {
@@ -85,19 +102,7 @@ header {
   transition: all 0.3s ease;
 }
 
-.toggle .line1{
-  transform: rotate(-45deg) translate(-5px,6px);
-  background-color: #000000;
-}
 
-.toggle .line2{
-  opacity: 0;
-}
-
-.toggle .line3{
-  transform: rotate(45deg) translate(-5px,-6px);
-  background-color: #000000;
-}
 
 
 /* Sections  */
@@ -191,7 +196,8 @@ header {
   min-height: 100vh;
   justify-content: space-around;
   padding-top: 20em;
-  /* column-gap: 15em; */
+  column-gap: 15em;
+
 }
 
 .options-text {
@@ -268,7 +274,12 @@ header {
   .big-circle, .medium-circle, .small-circle {
       opacity: 0.1;
   }
-  .nav-links {
+
+  .burger-nav-container {
+    display: block;
+  }
+
+  .burger-nav-links {
     position: fixed;
     padding: 0;
     right: 0px;
@@ -283,13 +294,28 @@ header {
     transition: transform 0.3s ease-in;
   }
 
-  .nav-links li{
+  .nav-container{
+    display:none;
+  }
+
+  .burger-nav-links li{
     opacity: 0;
   }
 
   .burger {
     display: block;
     z-index: 5;
+  }
+  .small-circle {
+    display: none;
+  }
+
+  header {
+    padding-left: 5vh;
+  }
+  
+  .options {
+    flex-direction: column;
   }
 }
 
@@ -306,6 +332,20 @@ header {
 
 .nav-active {
   transform: translateX(0%);
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+  background-color: #000000;
+}
+
+.toggle .line2{
+  opacity: 0;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
+  background-color: #000000;
 }
 
 .trade-list-container {
