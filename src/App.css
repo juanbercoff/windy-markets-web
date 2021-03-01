@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Courier Prime', monospace;
   transition: all 0.5s ease;
 }
 
@@ -21,7 +21,7 @@ body {
 }
 
 form{
-	background: #fff;
+	background: #FFFFFF;
 }
 
 /* Header  */
@@ -42,6 +42,11 @@ header {
   display: flex;
 }
 
+.nav-links{
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
 .logo-container {
   margin-bottom: 1rem;
   flex: 1
@@ -52,6 +57,7 @@ header {
   margin: 5px;
   color: #FFFFFF;
   margin-top: 17px;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .nav-links, .burger-nav-links {
@@ -109,7 +115,8 @@ header {
 
   /* Presentation  */
 .home-container {
-  background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%);
+  /* background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%); */
+  background-color: black;
 }
 
 .presentation {
@@ -125,6 +132,7 @@ header {
 }
 
 .intro-text h1{
+  font-family: 'Roboto', sans-serif;
   font-size: 54px;
   font-weight: 500;
   background: #FFFFFF;
@@ -140,21 +148,45 @@ header {
 }
 
 
-.cta {
-  padding: 50px 0px 0px 0px;
-  
-}
-
 .cta-select {
-  
-  background: rgb(25, 28, 31);
-  width: 150px;
-  height: 50px;
+  background: rgb(75, 75, 75);
+  width: 100px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: #FFFFFF;
   border-radius: 10%;
+  border: 0;
+  transition: 0.2s;
+  text-decoration: none;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.cta-select:hover {
+  background-color: #6F7071;
+}
+
+a:hover {
+  color: #FFFFFF;
+}
+
+.cta-select2 {
+  background: rgb(235, 240, 245);
+  width: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #000000;
+  border-radius: 10%;
+  margin-left: 1rem;
+  border: 0;
+  transition: 0.2s;
+  text-decoration: none;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.cta-select2:hover {
+  background-color: #b8b9b9;
 }
 
 .big-circle {
@@ -248,7 +280,7 @@ header {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   body {
     overflow-x: hidden;
   }
@@ -266,7 +298,7 @@ header {
       font-size: 18px;
   }
   .cta {
-      padding: 10px 0px 0px 0px;
+    padding: 10px 0px 0px 0px;
   }
   .cover img {
       height: 80%;
@@ -348,6 +380,43 @@ header {
   background-color: #000000;
 }
 
-.trade-list-container {
+.trades-table-container {
   background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%);
+  height: 100vh;
+  padding-top: 20vh;
+  
+}
+.trades-wrapper {
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: 0 5px 16px #323539;
+  border-radius: 2%;
+}
+
+.trades-wrapper h2 {
+  padding-top: 2vh;
+}
+
+.sign-in-button {
+  border-radius: 0.3rem;
+  background-color: #323539;
+  color: #FFFFFF;
+}
+
+.form-wrapper {
+  background-image: linear-gradient(149.53deg, rgb(139, 149, 158) -14.6%, rgb(51, 55, 58) 15.02%, rgb(0, 0, 0) 50.16%);
+  height: 100vh;
+  padding-top: 20vh;
+}
+
+.form-section {
+  text-align: center;
+}
+
+.form-section h2 {
+  color: #FFFFFF;
+}
+
+.form-button {
+  margin-top: 1rem;
 }

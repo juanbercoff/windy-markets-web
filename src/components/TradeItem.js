@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
+//import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
 
 const months = [
     'Jan',
@@ -34,8 +34,7 @@ const TradeItem = ({value, handleClick}) => {
             <td>{value.stock}</td>
             <td>{value.strike}</td>
             <td>{formatDate(value.expirationDate)}</td>
-            <td><img src={image} width='70%' height='auto' alt='trade'/>
-        </td>
+            <td>13</td>
         </tr>
 
     )

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import TradeItem from './TradeItem';
-import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
+//import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
 
 
-const TradesList = () => {
+const TradesList = ({title, requestURL}) => {
     let history = useHistory();
     const [data, setData] = useState([]);
 
@@ -25,7 +25,7 @@ const TradesList = () => {
     
     useEffect(() => {
         const getData = () => {
-            return fetch('/api/trades/all', {method: 'GET', credentials: "include"})
+            return fetch(requestURL, {method: 'GET', credentials: "include"})
             .then(res => {
                 if(res.ok) {
                     
@@ -37,26 +37,13 @@ const TradesList = () => {
             })  
         };
         getData();
-    }, [])
+    }, [requestURL])
     return (
-/*         <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h4 class="card-title m-b-0">Current Trades</h4>
-                    </div>
-                    <section className="row justify-content-center">
-                        <section className="col" >
-                            <ul className="list-group">
-                                {listTrades}
-                            </ul>
-                        </section>
-                    </section>
-                </div>
-            </div>
-        </div> */
-        <div class="row d-flex justify-content-center mt-100 mb-100 trade-list-container">
-            <div class="col-lg-4">
+
+        <div class="row d-flex justify-content-center mt-100 mb-100 trades-table-container">
+            
+            <div class="col-lg-4 trades-wrapper">
+            <h2>{title}</h2>
                 <table class="table table-hover table-striped table-dark">
                     <thead>
                         <tr>

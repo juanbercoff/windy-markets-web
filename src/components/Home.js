@@ -11,12 +11,10 @@ function Home() {
             <section className="presentation">
                 <div className="introduction">
                     <div className="intro-text">
-                        <h1>Follow the shift</h1>
+                        <h1>Follow the trade...</h1>
                         {/* <p>With a personalized strategy,<br/> our trading algorithm will uncover new possibilities</p> */}
                     </div>
-    {/*                 <div className="cta">
-                        <button className="cta-select">Download the app</button>
-                    </div> */}
+ 
                 </div>
                 <img className='big-circle' src={bigCircle} alt='bigCircle'></img>
                 <img className='medium-circle' src={mediumCircle} alt='mediumCircle'></img>

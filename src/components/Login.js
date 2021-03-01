@@ -27,14 +27,14 @@ const Login = () => {
             } else {
                 console.log('bad login')
             }
-            
         })   
     }
     
     return (
-        <section className="container-fluid">
-            <section className="row justify-content-center">
-                <section className="col-12 col-sm-6 col-md-4">
+        <section className="container-fluid form-wrapper">         
+            <section className="row justify-content-center">   
+                <section className="col-12 col-sm-6 col-md-4 form-section">
+                    <h2>Login</h2>
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         validate={values => {
@@ -69,7 +69,7 @@ const Login = () => {
                             <FormGroup label='Password' type='password' name='password' onChange={handleChange} onBlur={handleBlur} value={values.password}/>
                             {errors.password && touched.password && errors.password}
                             <div className="row justify-content-center">
-                                <button className="btn btn-primary btn-block" type="submit" disabled={isSubmitting}>
+                                <button className="btn btn-dark btn-block form-button" type="submit" disabled={isSubmitting}>
                                 Submit
                                 </button>
                             </div>

@@ -26,7 +26,7 @@ const TradeForm = () => {
 
         console.log(formData)
         
-        return fetch('http://3a2d47845b10.ngrok.io/api/trades', {
+        return fetch('/api/trades', {
             method: 'POST',
             body: formData
     
