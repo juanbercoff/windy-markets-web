@@ -9,7 +9,22 @@ function NavBar() {
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.burger-nav-links');
         const navLinks = document.querySelectorAll('.burger-nav-links li')
+        const header = document.querySelector(".header")
+        window.onscroll = () => scrollFunction();
 
+        function scrollFunction() {
+            console.log(document.documentElement.scrollTop)
+          if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            header.style.padding = '2vh 6vh 0vh';
+            header.style.boxShadow = 'rgb(255 255 255 / 15%) 0px 0px 10px';
+            burger.style.top = '4vh'
+          } else {
+            header.style.padding = '4vh 6vh 2vh';
+            header.style.boxShadow = 'none';
+            burger.style.top = '6vh'
+            
+          }
+        }
 
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
@@ -34,17 +49,17 @@ function NavBar() {
                     <li><a className='burger-nav-link' href='/home'>MISSION</a></li>
                     <li><Link className='burger-nav-link' to='/openTrades'>OPEN TRADES</Link></li>
                     <li><Link className='burger-nav-link' to='/pastTrades'>PAST TRADES</Link></li>
-                    <li><Link  className='burger-nav-link' to='/pastTrades'>SEND TRADES</Link ></li>
+                    <li><a href='/login' className='burger-nav-link' type='button'>LOGIN</a></li>
+                    <li><a href='/register' className="cta-select" type='button'>REGISTER</a></li>
                 </ul>
             </nav>
-            <header>
+            <header className='header'>
                 <div className="logo-container">
                     <img src={logo} alt='logo' height="40px" width='auto'></img>
                     <h4>Windy Markets</h4>
                 </div>
                 <nav className="nav-container">
                     <ul className="nav-links">
-                        {/* TODO Hamburger menu when viewport is too small */} 
                         <li><a className='nav-link' href='/home'>MISSION</a></li>
                         <li><Link className='nav-link' to='/openTrades'>OPEN TRADES</Link ></li>
                         <li><Link  className='nav-link' to='/pastTrades'>PAST TRADES</Link ></li>
@@ -59,15 +74,15 @@ function NavBar() {
                 <div>
 
                 </div>
-                <div className='burger'>
+
+                
+            </header>
+            <div className='burger'>
                     <div className='line1'></div>
                     <div className='line2'></div>
                     <div className='line3'></div>
 
                 </div>
-                
-            </header>
-            
 
         </div>
 

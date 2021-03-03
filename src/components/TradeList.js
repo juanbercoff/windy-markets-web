@@ -40,7 +40,7 @@ const TradesList = ({title, requestURL}) => {
     }, [requestURL])
     return (
 
-        <div class="row d-flex justify-content-center mt-100 mb-100 trades-table-container">
+        <div class="d-flex justify-content-center mt-100 mb-100 trades-table-container">
             
             <div class="col-lg-4 trades-wrapper">
             <h2>{title}</h2>
