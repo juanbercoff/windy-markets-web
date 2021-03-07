@@ -17,11 +17,11 @@ function NavBar() {
           if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             header.style.padding = '2vh 6vh 0vh';
             header.style.boxShadow = 'rgb(255 255 255 / 15%) 0px 0px 10px';
-            burger.style.top = '4vh'
+            burger.style.top = '5vh'
           } else {
             header.style.padding = '4vh 6vh 2vh';
             header.style.boxShadow = 'none';
-            burger.style.top = '6vh'
+            burger.style.top = '7vh'
             
           }
         }
@@ -46,27 +46,25 @@ function NavBar() {
         <div>
             <nav className="burger-nav-container">
                 <ul className="burger-nav-links">
-                    <li><a className='burger-nav-link' href='/home'>MISSION</a></li>
-                    <li><Link className='burger-nav-link' to='/openTrades'>OPEN TRADES</Link></li>
                     <li><Link className='burger-nav-link' to='/pastTrades'>PAST TRADES</Link></li>
-                    <li><a href='/login' className='burger-nav-link' type='button'>LOGIN</a></li>
+                    <li><Link className='burger-nav-link' to='/openTrades'>OPEN TRADES</Link></li>
                     <li><a href='/register' className="cta-select" type='button'>REGISTER</a></li>
+                    <li><a href='/login' className='burger-nav-link' type='button'>LOGIN</a></li>
                 </ul>
             </nav>
             <header className='header'>
                 <div className="logo-container">
-                    <img src={logo} alt='logo' height="40px" width='auto'></img>
+                    <img src={logo} alt='logo' height="50px" width='auto'></img>
                     <h4>Windy Markets</h4>
                 </div>
                 <nav className="nav-container">
                     <ul className="nav-links">
-                        <li><a className='nav-link' href='/home'>MISSION</a></li>
-                        <li><Link className='nav-link' to='/openTrades'>OPEN TRADES</Link ></li>
                         <li><Link  className='nav-link' to='/pastTrades'>PAST TRADES</Link ></li>
+                        <li><Link className='nav-link' to='/openTrades'>OPEN TRADES</Link ></li>
                         <li>                
                             <div className="cta">
-                                <a href='/login' className="cta-select" type='button'>Login</a>
                                 <a href='/register' className="cta-select2" type='button'>Register</a>
+                                <a href='/login' className="cta-select" type='button'>Login</a>
                             </div>
                         </li>
                     </ul>
