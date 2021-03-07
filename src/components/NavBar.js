@@ -13,7 +13,6 @@ function NavBar() {
         window.onscroll = () => scrollFunction();
 
         function scrollFunction() {
-            console.log(document.documentElement.scrollTop)
           if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             header.style.padding = '2vh 6vh 0vh';
             header.style.boxShadow = 'rgb(255 255 255 / 15%) 0px 0px 10px';

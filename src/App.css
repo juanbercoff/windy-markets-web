@@ -401,8 +401,10 @@ a:hover {
 .trades-wrapper {
   text-align: center;
   color: #FFFFFF;
-  box-shadow: 0 5px 16px #323539;
+  /* box-shadow: 0 5px 16px #323539; */
   border-radius: 2%;
+  font-size: 12px;
+  margin: 0 auto;
 }
 
 .trades-wrapper h2 {

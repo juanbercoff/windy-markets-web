@@ -40,15 +40,14 @@ const TradesList = ({title, requestURL}) => {
     }, [requestURL])
     return (
 
-        <div class="d-flex justify-content-center mt-100 mb-100 trades-table-container">
-            
-            <div class="col-lg-4 trades-wrapper">
-            <h2>{title}</h2>
-                <table class="table table-hover table-striped table-dark">
+        <div className="col-lg-4 trades-wrapper">
+                <h2>{title}</h2>
+                <table className="table table-hover table-sm table-striped table-dark">
                     <thead>
                         <tr>
+                        <th scope="col">Created</th>
                         <th scope="col">Buying</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Symbol</th>
                         <th scope="col">Strike</th>
                         <th scope="col">Exp. Date</th>
                         <th scope="col">Image</th>
@@ -58,9 +57,9 @@ const TradesList = ({title, requestURL}) => {
                         {listTrades}
                     </tbody>
                 </table>
-            </div>
         </div>
     )
 }
+
 
 export default TradesList;

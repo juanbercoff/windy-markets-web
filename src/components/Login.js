@@ -20,13 +20,15 @@ const Login = () => {
         })
         .then(res => {
             if(res.status === 200) {
-                //return res.headers.map['auth-token']
-                //storeToken(res.headers.map['auth-token'])
-                console.log('good login')
-                history.push("/");
+                return res.json()
             } else {
+                //TODO res 401
                 console.log('bad login')
             }
+        })
+        .then(token=> {
+            localStorage.setItem('token', token.token)
+            history.push('/dashboard')
         })   
     }
     

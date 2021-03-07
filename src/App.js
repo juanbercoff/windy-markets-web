@@ -8,38 +8,45 @@ import ModifyTradeForm from './components/ModifyTradeForm';
 import TradesList from './components/TradeList';
 import WhatWeDo from './components/WhatWeDo';
 import Dashboard from './components/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route } from "react-router-dom";
+import styled from 'styled-components';
+
 
 
 function App() {
   return (
-    <div className='body-container'>
-      
+    <div className='body-container'>  
       <Switch>
-        <Route path="/login">
+        <Route exact path="/login">
           <Login />
         </Route>
-        <Route path="/register">
+        <Route exact path="/register">
           <Register />
         </Route> 
-        <Route path="/modifyTrade">
+        <Route exact path="/modifyTrade">
           <ModifyTradeForm/> 
         </Route>
-        <Route path="/addTrade">
+        <Route exact path="/addTrade">
           <TradeForm/> 
         </Route>
-        <Route path="/openTrades">
+        <Route exact path="/openTrades">
           <NavBar/>
-          <TradesList title='Open Trades' requestURL='/api/trades/current'/> 
+          <Container>
+            <TradesList title='Open Trades' requestURL='/api/trades/current'/> 
+          </Container>
         </Route>
-        <Route path="/pastTrades">
+        <Route exact path="/pastTrades">
           <NavBar/>
-          <TradesList title='Past Trades' requestURL='/api/trades/past'/> 
+          <Container>
+            <TradesList title='Past Trades' requestURL='/api/trades/past'/> 
+          </Container>
         </Route> 
-        <Route path="/dashboard">
+        <ProtectedRoute exact path='/dashboard' component={Dashboard}/>
+{/*         <Protect path="/dashboard">
           <Dashboard/>  
-        </Route> 
-        <Route path="/">
+        </Route> */} 
+        <Route exact path="/">
           <NavBar/>
           <Home />
           <WhatWeDo/>
@@ -51,5 +58,13 @@ function App() {
 
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  height: 100vh;
+  padding-top: 20vh;
+`
 
 export default App;

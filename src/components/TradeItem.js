@@ -27,9 +27,20 @@ const TradeItem = ({value, handleClick}) => {
         return monthName + '.' + dayOfMonth + ' ' + year
     }
 
+    const formatCreationTime = (dateAsString) => {
+        const date = new Date(dateAsString);
+        const hour = date.getHours()
+        const monthName = months[date.getMonth()];
+        const dayOfMonth = date.getDate();
+        const minutes = date.getMinutes()
+
+        return monthName + '.' + dayOfMonth + ' ' + hour + ":" + minutes;
+    }
+
     return (
 
-        <tr class="w-25">
+        <tr className="w-25">
+            <td>{formatCreationTime(value.createdAt)}</td>
             <td>{value.contractType}</td>
             <td>{value.stock}</td>
             <td>{value.strike}</td>
