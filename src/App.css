@@ -44,7 +44,7 @@ header {
 
 .nav-links{
   align-items: center;
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
 }
 
 .logo-container {
@@ -56,8 +56,12 @@ header {
   font-weight: 300;
   margin: 5px;
   color: #FFFFFF;
-  margin-top: 17px;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.35rem;
+  padding-left: 1.1rem;
+  margin-top: 1.5rem;
+  padding-top:0.4rem;
+
+  /* font-family: 'Nanum Gothic', sans-serif; */
 }
 
 .nav-links, .burger-nav-links {
@@ -137,7 +141,7 @@ header {
 }
 
 .intro-text h1{
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
   font-size: 54px;
   font-weight: 500;
   background: #FFFFFF;
@@ -297,7 +301,7 @@ a:hover {
       text-align: center;
   }
   .intro-text h1 {
-      font-size: 30px;
+      font-size: 25px;
   }
   .intro-text p{
       font-size: 18px;
@@ -346,7 +350,7 @@ a:hover {
     display: block;
     z-index: 5;
     position: fixed;
-    top: 6vh;
+    top: 7vh;
     right: 5vh;
     transition: 0.3s ease-in;
   }
