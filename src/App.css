@@ -262,12 +262,16 @@ a:hover {
 	filter: drop-shadow(0px 5px 3px black);
 }
 
+.trade-item {
+	display: flex;
+}
+
 .bg-active {
 	background-color: #d9d9de;
 }
 
 .trades-wrapper {
-	text-align: center;
+	text-align: left;
 	color: #ffffff;
 	margin: 0 auto;
 }
@@ -359,10 +363,6 @@ a:hover {
 
 	.options {
 		flex-direction: column;
-	}
-
-	.trades-wrapper {
-		font-size: 12px;
 	}
 }
 

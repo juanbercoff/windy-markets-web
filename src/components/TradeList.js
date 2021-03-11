@@ -42,21 +42,7 @@ const TradesList = ({ title, requestURL }) => {
 	return (
 		<div className="col-lg-4 trades-wrapper">
 			<h2>{title}</h2>
-			<table className="table table-hover table table-striped table-dark">
-				<thead>
-					<tr>
-						<th scope="col">Created</th>
-						<th scope="col">Status</th>
-						<th scope="col">Buying</th>
-						<th scope="col">Symbol</th>
-						<th scope="col">Strike price</th>
-						<th scope="col">Exp. Date</th>
-						<th scope="col">Image</th>
-						<th scope="col">Confirm</th>
-					</tr>
-				</thead>
-				<tbody>{listTrades}</tbody>
-			</table>
+			<ul class="list-group">{listTrades}</ul>
 		</div>
 	);
 };
