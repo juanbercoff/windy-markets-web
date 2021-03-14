@@ -5,16 +5,6 @@ function TradeSelector({ tradeSelectorToggler, isOpen }) {
 	return (
 		<ListContainer>
 			<List>
-				<ListItemOpen
-					onClick={() => {
-						if (!isOpen) {
-							tradeSelectorToggler();
-						}
-					}}
-					isOpen={isOpen}
-				>
-					Open
-				</ListItemOpen>
 				<ListItemClosed
 					onClick={() => {
 						if (isOpen) {
@@ -24,7 +14,19 @@ function TradeSelector({ tradeSelectorToggler, isOpen }) {
 					isOpen={isOpen}
 				>
 					Past
+					<br /> trades
 				</ListItemClosed>
+				<ListItemOpen
+					onClick={() => {
+						if (!isOpen) {
+							tradeSelectorToggler();
+						}
+					}}
+					isOpen={isOpen}
+				>
+					Today's
+					<br /> trades
+				</ListItemOpen>
 			</List>
 		</ListContainer>
 	);
@@ -48,6 +50,8 @@ const ListItemOpen = styled.li(({ isOpen }) => ({
 	padding: '0.5rem',
 	borderBottomStyle: 'solid',
 	borderWidth: isOpen ? 1 : 0,
+	textAlign: 'center',
+	fontSize: '14px',
 }));
 
 const ListItemClosed = styled.li(({ isOpen }) => ({
@@ -55,6 +59,8 @@ const ListItemClosed = styled.li(({ isOpen }) => ({
 	padding: '0.5rem',
 	borderBottomStyle: 'solid',
 	borderWidth: isOpen ? 0 : 1,
+	textAlign: 'center',
+	fontSize: '14px',
 }));
 
 export default TradeSelector;

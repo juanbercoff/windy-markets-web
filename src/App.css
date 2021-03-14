@@ -274,6 +274,7 @@ a:hover {
 	text-align: left;
 	color: #ffffff;
 	margin: 0 auto;
+	font-size: 14px;
 }
 
 @keyframes drop {

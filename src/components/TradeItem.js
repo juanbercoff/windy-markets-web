@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg';
+import Dropdown from './Dropdown';
 
 const months = [
 	'Jan',
@@ -16,14 +16,14 @@ const months = [
 	'Dec',
 ];
 
-const TradeItem = ({ value, handleClick }) => {
+const TradeItem = ({ tradeValues, dropdownDisplay }) => {
 	const formatDate = (dateAsString) => {
 		const date = new Date(dateAsString);
 		const year = date.getFullYear();
 		const monthName = months[date.getMonth()];
 		const dayOfMonth = date.getDate();
 
-		return monthName + '.' + dayOfMonth + ' ' + year;
+		return monthName + '.' + dayOfMonth + ' ';
 	};
 
 	const formatCreationTime = (dateAsString) => {
@@ -33,33 +33,21 @@ const TradeItem = ({ value, handleClick }) => {
 		const dayOfMonth = date.getDate();
 		const minutes = date.getMinutes();
 
-		return monthName + '.' + dayOfMonth + ' ' + hour + ':' + minutes;
+		return hour + ':' + minutes;
 	};
+
 	return (
-		<li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-top">
-			BUY {value.contractType.toUpperCase()} of {value.stock.toUpperCase()}{' '}
-			strike {value.strike} at 3 usd (per contract) for{' '}
-			{formatDate(value.expirationDate)}
-			<div class="dropdown dropleft">
-				<button
-					class="btn btn-secondary dropdown-toggle"
-					type="button"
-					id="dropdownMenuButton"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="false"
-				></button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">
-						Action
-					</a>
-					<a class="dropdown-item" href="#">
-						Another action
-					</a>
-					<a class="dropdown-item" href="#">
-						Something else here
-					</a>
+		<li className="list-group-item list-group-item-dark d-flex flex-column pb-0">
+			<div className="d-flex flex-row justify-content-between">
+				<div>
+					BUY {tradeValues.contractType.toUpperCase()} of{' '}
+					{tradeValues.stock.toUpperCase()} strike {tradeValues.strike} at 3 usd
+					(per contract) for {formatDate(tradeValues.expirationDate)}
 				</div>
+				{dropdownDisplay ? <Dropdown tradeValues={tradeValues} /> : null}
+			</div>
+			<div className="d-flex w-100 pt-1">
+				<small>{formatCreationTime(tradeValues.createdAt)}</small>
 			</div>
 		</li>
 	);

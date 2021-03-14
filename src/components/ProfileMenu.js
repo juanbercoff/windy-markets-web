@@ -22,7 +22,7 @@ function ProfileMenu({ displayProfileMenu }) {
 			<List>
 				<ListItem>Profile</ListItem>
 				<ListItem>FAQ</ListItem>
-				<ListItem onClick={() => signOut()}>Sign Out</ListItem>
+				<ListItem onClick={signOut}>Sign Out</ListItem>
 			</List>
 		</ProfileMenuWrapper>
 	);
@@ -35,6 +35,7 @@ const ProfileMenuWrapper = styled.div(({ displayProfileMenu }) => ({
 	right: '0px',
 	backgroundColor: '#303133',
 	color: 'white',
+	zIndex: 1,
 }));
 
 const List = styled.ul`

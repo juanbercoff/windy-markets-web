@@ -3,23 +3,24 @@ import { useHistory } from 'react-router-dom';
 import TradeItem from './TradeItem';
 //import image from '../public/images/trade-images/image-1613863803229-263060053.jpeg'
 
-const TradesList = ({ title, requestURL }) => {
+const TradesList = ({ title, requestURL, dropdownDisplay }) => {
 	let history = useHistory();
 	const [data, setData] = useState([]);
 
-	const handleClick = (trade) => {
+	/* 	const handleUpdate = (trade) => {
 		return history.push({
 			pathname: '/modifyTradeForm',
 			state: { trade: trade },
 		});
-	};
+	}; */
 
 	const listTrades = data.map((trade) => {
 		return (
 			<TradeItem
-				value={trade}
-				handleClick={() => handleClick(trade)}
+				tradeValues={trade}
+				/* handleUpdate={() => handleUpdate(trade)} */
 				key={trade.id.toString()}
+				dropdownDisplay={dropdownDisplay}
 			/>
 		);
 	});
@@ -33,7 +34,6 @@ const TradesList = ({ title, requestURL }) => {
 					}
 				})
 				.then((trades) => {
-					console.log(trades);
 					setData(trades);
 				});
 		};
