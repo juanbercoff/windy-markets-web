@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import ModifyTradeForm from './ModifyTradeForm';
+import CloseTrade from './CloseTradeForm';
+import AddUserTrade from './AddUserTrade';
 import styled from 'styled-components';
 
-const Modal = ({ isOpen, tradeValues, onClose }) => {
+const Modal = ({ isOpen, tradeValues, onClose, action }) => {
 	if (!isOpen) {
-		console.log('open is null');
 		return null;
 	}
 	return ReactDom.createPortal(
 		<Overlay>
 			<Wrapper>
-				<ModifyTradeForm tradeValues={tradeValues} onClose={onClose} />
+				{action === 'updating' ? (
+					<ModifyTradeForm tradeValues={tradeValues} onClose={onClose} />
+				) : action === 'closing' ? (
+					<CloseTrade tradeValues={tradeValues} onClose={onClose} />
+				) : (
+					<AddUserTrade tradeValues={tradeValues} onClose={onClose} />
+				)}
 			</Wrapper>
 		</Overlay>,
 		document.getElementById('modal')

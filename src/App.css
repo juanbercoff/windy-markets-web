@@ -18,6 +18,7 @@ body {
 .form-container {
 	border-radius: 10px;
 	padding: 30px;
+	width: 300px;
 }
 
 form {
@@ -409,6 +410,7 @@ a:hover {
 
 .trades-wrapper h2 {
 	padding-top: 2vh;
+	text-align: center;
 }
 
 .sign-in-button {
@@ -425,6 +427,9 @@ a:hover {
 
 .form-section {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .form-section h2 {

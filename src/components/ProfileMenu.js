@@ -11,10 +11,12 @@ function ProfileMenu({ displayProfileMenu }) {
 		return fetch('/api/user/logout', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-		}).then(() => {
-			localStorage.removeItem('token');
-			history.push('/');
-		});
+		})
+			.then(() => {
+				localStorage.removeItem('token');
+				history.push('/');
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (

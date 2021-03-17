@@ -3,36 +3,32 @@ import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
-const TradeForm = () => {
+const AddUserTrade = ({ tradeValues, onClose }) => {
+	const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
 		setErrors([]);
 	};
 
-	const history = useHistory();
-
 	const submitTradeHandler = (data) => {
 		let formData = new FormData();
 		//TODO input validation
-		formData.append('stock', data.stock);
-		formData.append('contractType', data.contractType);
-		formData.append('strike', data.strike);
 		formData.append('price', data.price);
-		formData.append('expirationDate', data.expirationDate);
+		formData.append('amount', data.amount);
 		formData.append('image', data.image);
+		formData.append('userId', 999);
+		formData.append('tradeId', tradeValues.id);
 
-		console.log(formData);
-
-		return fetch('/api/trades', {
+		return fetch('/api/userTrades', {
 			method: 'POST',
 			body: formData,
 		}).then((res) => {
 			if (res.status === 200) {
-				return history.push('/tradesList');
+				return console.log('success');
 			}
 			res.json().then((data) => {
-				return setErrors([...errors, data.msg]);
+				return console.log(data);
 			});
 		});
 	};
@@ -59,14 +55,11 @@ const TradeForm = () => {
 						</div>
 					</div>
 				) : null}
-				<section className="col-12 col-sm-6 col-md-4">
+				<section>
 					<Formik
 						initialValues={{
-							stock: '',
-							contractType: '',
-							strike: '',
 							price: '',
-							expirationDate: '',
+							amount: '',
 							image: null,
 						}}
 						onSubmit={async (values, { setSubmitting }) => {
@@ -89,46 +82,22 @@ const TradeForm = () => {
 								className="form-container"
 								onSubmit={handleSubmit}
 							>
-								<h4 className="text-center font-weight-bold"> Add Trade </h4>
-								<FormGroup
-									label="Symbol"
-									type="text"
-									name="stock"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.stock}
-								/>
-								<FormGroup
-									label="Option"
-									type="text"
-									name="contractType"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.contractType}
-								/>
-								<FormGroup
-									label="Strike"
-									type="text"
-									name="strike"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.strike}
-								/>
+								<h4 className="text-center font-weight-bold"> Follow Trade </h4>
 								<FormGroup
 									label="Price"
-									type="text"
+									type="number"
 									name="price"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									value={values.price}
 								/>
 								<FormGroup
-									label="Expiration Date"
-									type="date"
-									name="expirationDate"
+									label="Amount"
+									type="number"
+									name="amount"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									value={values.expirationDate}
+									value={values.amount}
 								/>
 								<FormGroup
 									label="Image"
@@ -140,13 +109,20 @@ const TradeForm = () => {
 									onBlur={handleBlur}
 								/>
 
-								<div className="row justify-content-center">
+								<div className="row justify-content-around">
 									<button
-										className="btn btn-primary btn-block"
+										className="btn btn-dark btn-block mt-4"
 										type="submit"
 										disabled={isSubmitting}
 									>
 										Submit
+									</button>
+									<button
+										className="btn btn-secondary btn-block mt-2"
+										type="button"
+										onClick={onClose}
+									>
+										Cancel
 									</button>
 								</div>
 							</form>
@@ -158,4 +134,4 @@ const TradeForm = () => {
 	);
 };
 
-export default TradeForm;
+export default AddUserTrade;

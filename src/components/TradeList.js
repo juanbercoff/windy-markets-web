@@ -34,6 +34,7 @@ const TradesList = ({ title, requestURL, dropdownDisplay }) => {
 					}
 				})
 				.then((trades) => {
+					console.log(trades);
 					setData(trades);
 				});
 		};
@@ -42,7 +43,7 @@ const TradesList = ({ title, requestURL, dropdownDisplay }) => {
 	return (
 		<div className="col-lg-4 trades-wrapper">
 			<h2>{title}</h2>
-			<ul class="list-group">{listTrades}</ul>
+			<ul className="list-group">{listTrades}</ul>
 		</div>
 	);
 };

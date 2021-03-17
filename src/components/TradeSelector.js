@@ -13,7 +13,7 @@ function TradeSelector({ tradeSelectorToggler, isOpen }) {
 					}}
 					isOpen={isOpen}
 				>
-					Past
+					Your
 					<br /> trades
 				</ListItemClosed>
 				<ListItemOpen

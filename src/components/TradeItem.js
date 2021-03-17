@@ -41,13 +41,21 @@ const TradeItem = ({ tradeValues, dropdownDisplay }) => {
 			<div className="d-flex flex-row justify-content-between">
 				<div>
 					BUY {tradeValues.contractType.toUpperCase()} of{' '}
-					{tradeValues.stock.toUpperCase()} strike {tradeValues.strike} at 3 usd
-					(per contract) for {formatDate(tradeValues.expirationDate)}
+					{tradeValues.stock.toUpperCase()} strike {tradeValues.strike} at{' '}
+					{tradeValues.price}$ (per contract) for{' '}
+					{formatDate(tradeValues.expirationDate)}{' '}
+					{tradeValues.closePrice
+						? 'SOLD at ' + tradeValues.closePrice + '$'
+						: null}
 				</div>
 				{dropdownDisplay ? <Dropdown tradeValues={tradeValues} /> : null}
 			</div>
 			<div className="d-flex w-100 pt-1">
-				<small>{formatCreationTime(tradeValues.createdAt)}</small>
+				<small>
+					{tradeValues.status.toUpperCase() +
+						' ' +
+						formatCreationTime(tradeValues.updatedAt)}
+				</small>
 			</div>
 		</li>
 	);

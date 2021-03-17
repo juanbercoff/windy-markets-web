@@ -1,6 +1,6 @@
 {
 	"name": "windy-market-web",
-	"proxy": "http://localhost:3000",
+	"proxy": "http://24d8e8741d10.ngrok.io",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
