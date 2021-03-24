@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useHistory, useLocation } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 const ModifyTradeForm = ({ tradeValues, onClose }) => {
-	const history = useHistory();
+	//const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
@@ -16,6 +16,7 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 		//TODO input validation
 		formData.append('stock', data.stock);
 		formData.append('contractType', data.contractType);
+		formData.append('price', data.price);
 		formData.append('strike', data.strike);
 		formData.append('expirationDate', data.expirationDate);
 		formData.append('image', data.image);
@@ -61,6 +62,7 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 							stock: tradeValues.stock,
 							contractType: tradeValues.contractType,
 							strike: tradeValues.strike,
+							price: tradeValues.price,
 							expirationDate: tradeValues.expirationDate,
 							image: null,
 						}}
@@ -108,6 +110,14 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 									onChange={handleChange}
 									onBlur={handleBlur}
 									value={values.strike}
+								/>
+								<FormGroup
+									label="Price"
+									type="text"
+									name="price"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.price}
 								/>
 								<FormGroup
 									label="Expiration Date"

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-function ProfileMenu({ displayProfileMenu }) {
+function ProfileMenu({ displayProfileMenu, handleClick }) {
 	const history = useHistory();
 
 	const signOut = () => {
@@ -19,19 +19,35 @@ function ProfileMenu({ displayProfileMenu }) {
 			.catch((err) => console.log(err));
 	};
 
-	return (
-		<ProfileMenuWrapper displayProfileMenu={displayProfileMenu}>
+	return displayProfileMenu ? (
+		<ProfileMenuWrapper>
 			<List>
-				<ListItem>Profile</ListItem>
+				<ListItem
+					onClick={() => {
+						handleClick();
+						return history.push('/dashboard');
+					}}
+				>
+					Home
+				</ListItem>
+				<ListItem onClick={handleClick}>Profile</ListItem>
 				<ListItem>FAQ</ListItem>
+				<ListItem
+					onClick={() => {
+						handleClick();
+						return history.push('/windyTrades');
+					}}
+				>
+					Windy Trades
+				</ListItem>
 				<ListItem onClick={signOut}>Sign Out</ListItem>
 			</List>
 		</ProfileMenuWrapper>
-	);
+	) : null;
 }
 
-const ProfileMenuWrapper = styled.div(({ displayProfileMenu }) => ({
-	display: displayProfileMenu ? 'flex' : 'none',
+const ProfileMenuWrapper = styled.div(() => ({
+	display: 'flex',
 	position: 'fixed',
 	top: '71px',
 	right: '0px',
@@ -51,6 +67,7 @@ const ListItem = styled.li`
 	list-style: none;
 	padding: 10px 15px;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	cursor: pointer;
 `;
 
 export default ProfileMenu;

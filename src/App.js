@@ -6,23 +6,32 @@ import Register from './components/Register';
 import TradeForm from './components/TradeForm';
 import ModifyTradeForm from './components/ModifyTradeForm';
 import TradesList from './components/TradeList';
-import WhatWeDo from './components/WhatWeDo';
+import WindyTrades from './components/WindyTrades';
+
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-
-const token = localStorage.getItem('token');
+import { useEffect } from 'react';
 
 function App() {
+	const token = localStorage.getItem('token');
+	const history = useHistory();
+
+	useEffect(() => {
+		if (token) {
+			history.push('/dashboard');
+		}
+	}, [token, history]);
+
 	return (
 		<div className="body-container">
 			<Switch>
 				<Route exact path="/login">
-					{token ? <Redirect to={{ pathname: '/dashboard' }} /> : <Login />}
+					<Login />
 				</Route>
 				<Route exact path="/register">
-					{token ? <Redirect to={{ pathname: '/dashboard' }} /> : <Register />}
+					<Register />
 				</Route>
 				<Route exact path="/modifyTradeForm">
 					<ModifyTradeForm />
@@ -31,48 +40,36 @@ function App() {
 					<TradeForm />
 				</Route>
 				<Route exact path="/openTrades">
-					{token ? (
-						<Redirect to={{ pathname: '/dashboard' }} />
-					) : (
-						<div>
-							<NavBar />
-							<Container>
-								<TradesList
-									title="Open Trades"
-									requestURL="/api/trades/current"
-									dropdownDisplay={false}
-								/>
-							</Container>
-						</div>
-					)}
+					<div>
+						<NavBar />
+						<Container>
+							<TradesList
+								title="Open Trades"
+								requestURL="/api/trades/current"
+								dropdownDisplay={false}
+							/>
+						</Container>
+					</div>
 				</Route>
 				<Route exact path="/pastTrades">
-					{token ? (
-						<Redirect to={{ pathname: '/dashboard' }} />
-					) : (
-						<div>
-							<NavBar />
-							<Container>
-								<TradesList
-									title="Past Trades"
-									requestURL="/api/trades/past"
-									dropdownDisplay={false}
-								/>
-							</Container>
-						</div>
-					)}
+					<div>
+						<NavBar />
+						<Container>
+							<TradesList
+								title="Past Trades"
+								requestURL="/api/trades/past"
+								dropdownDisplay={false}
+							/>
+						</Container>
+					</div>
 				</Route>
 				<ProtectedRoute exact path="/dashboard" component={Dashboard} />
+				<ProtectedRoute exact path="/windyTrades" component={WindyTrades} />
 				<Route exact path="/">
-					{token ? (
-						<Redirect to={{ pathname: '/dashboard' }} />
-					) : (
-						<div>
-							<NavBar />
-							<Home />
-							<WhatWeDo />
-						</div>
-					)}
+					<div>
+						<NavBar />
+						<Home />
+					</div>
 				</Route>
 			</Switch>
 		</div>

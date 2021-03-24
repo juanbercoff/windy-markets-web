@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 const CloseTrade = ({ tradeValues, onClose }) => {
-	const history = useHistory();
+	//const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {

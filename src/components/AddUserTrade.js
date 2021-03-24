@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 const AddUserTrade = ({ tradeValues, onClose }) => {
-	const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
@@ -17,7 +16,7 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 		formData.append('price', data.price);
 		formData.append('amount', data.amount);
 		formData.append('image', data.image);
-		formData.append('userId', 999);
+		formData.append('userId', 19);
 		formData.append('tradeId', tradeValues.id);
 
 		return fetch('/api/userTrades', {

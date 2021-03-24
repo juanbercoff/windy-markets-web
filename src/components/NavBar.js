@@ -57,7 +57,7 @@ function NavBar() {
 						</Link>
 					</li>
 					<li>
-						<a href="/register" className="cta-select" type="button">
+						<a href="/register" className="burger-nav-link" type="button">
 							REGISTER
 						</a>
 					</li>

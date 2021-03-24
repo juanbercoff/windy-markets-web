@@ -18,18 +18,16 @@ const TradeForm = () => {
 		formData.append('stock', data.stock);
 		formData.append('contractType', data.contractType);
 		formData.append('strike', data.strike);
-		formData.append('price', data.price);
+		formData.append('price', data.price === '' ? null : data.price);
 		formData.append('expirationDate', data.expirationDate);
 		formData.append('image', data.image);
-
-		console.log(formData);
 
 		return fetch('/api/trades', {
 			method: 'POST',
 			body: formData,
 		}).then((res) => {
 			if (res.status === 200) {
-				return history.push('/tradesList');
+				return history.push('/dashboard');
 			}
 			res.json().then((data) => {
 				return setErrors([...errors, data.msg]);
@@ -98,14 +96,18 @@ const TradeForm = () => {
 									onBlur={handleBlur}
 									value={values.stock}
 								/>
-								<FormGroup
-									label="Option"
-									type="text"
-									name="contractType"
+								<label>Option</label>
+								<select
 									onChange={handleChange}
 									onBlur={handleBlur}
-									value={values.contractType}
-								/>
+									class="form-select"
+									aria-label="Option"
+									name="contractType"
+								>
+									<option selected>Open this select menu</option>
+									<option value="Put">Put</option>
+									<option value="Call">Call</option>
+								</select>
 								<FormGroup
 									label="Strike"
 									type="text"
@@ -116,7 +118,7 @@ const TradeForm = () => {
 								/>
 								<FormGroup
 									label="Price"
-									type="text"
+									type="number"
 									name="price"
 									onChange={handleChange}
 									onBlur={handleBlur}

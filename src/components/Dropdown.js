@@ -4,6 +4,7 @@ import Modal from './Modal';
 const Dropdown = ({ tradeValues }) => {
 	const [open, setIsOpen] = useState(false);
 	const [action, setAction] = useState(null);
+	const closedStatus = 'sold';
 
 	const role = localStorage.getItem('role');
 	const deleteTrade = () => {
@@ -31,7 +32,7 @@ const Dropdown = ({ tradeValues }) => {
 				return window.location.reload();
 			}
 			res.json().then(() => {
-				return console.log('Trade was deleted');
+				return console.log('Trade was confirmed');
 			});
 		});
 	};
@@ -53,7 +54,7 @@ const Dropdown = ({ tradeValues }) => {
 							<button
 								type="button"
 								className="dropdown-item"
-								disabled={tradeValues.status === 'closed' ? true : false}
+								disabled={tradeValues.status === closedStatus ? true : false}
 								onClick={() => {
 									setAction('updating');
 									return setIsOpen(true);
@@ -64,28 +65,28 @@ const Dropdown = ({ tradeValues }) => {
 
 							<button
 								type="button"
-								disabled={tradeValues.status === 'closed' ? true : false}
+								disabled={tradeValues.status === closedStatus ? true : false}
 								className="dropdown-item"
 								onClick={deleteTrade}
 							>
 								Delete
 							</button>
-							{tradeValues.status === 'confirmed' ? (
+							{tradeValues.status === 'filled' ? (
 								<button
 									type="button"
-									disabled={tradeValues.status === 'closed' ? true : false}
+									disabled={tradeValues.status === closedStatus ? true : false}
 									className="dropdown-item"
 									onClick={() => {
 										setAction('closing');
 										return setIsOpen(true);
 									}}
 								>
-									Close
+									Sell
 								</button>
 							) : (
 								<button
 									type="button"
-									disabled={tradeValues.status === 'closed' ? true : false}
+									disabled={tradeValues.status === closedStatus ? true : false}
 									className="dropdown-item"
 									onClick={confirmTrade}
 								>
@@ -97,7 +98,7 @@ const Dropdown = ({ tradeValues }) => {
 						<button
 							type="button"
 							className="dropdown-item"
-							disabled={tradeValues.status === 'closed' ? true : false}
+							disabled={tradeValues.status === closedStatus ? true : false}
 							onClick={() => {
 								setAction('adding');
 								return setIsOpen(true);

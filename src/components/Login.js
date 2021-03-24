@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 const Login = () => {
+	const [msg, setMsg] = useState(null);
 	let history = useHistory();
 
 	const loginHandler = (data) => {
@@ -17,8 +18,8 @@ const Login = () => {
 				if (res.status === 200) {
 					return res.json();
 				} else {
-					//TODO res 401
-					console.log('bad login');
+					setMsg(res);
+					throw new Error('bad login');
 				}
 			})
 			.then((data) => {
@@ -26,11 +27,31 @@ const Login = () => {
 				localStorage.setItem('role', data.role);
 				localStorage.setItem('userId', data.userId);
 				history.push('/dashboard');
+			})
+			.catch((err) => {
+				console.log(err);
 			});
 	};
 
 	return (
 		<section className="form-wrapper">
+			{msg && (
+				<div
+					class="alert alert-warning alert-dismissible fade show"
+					role="alert"
+				>
+					<strong>Wrong email or password</strong> Your email or password is
+					wrong. Please try again.
+					<button
+						type="button"
+						class="close"
+						data-dismiss="alert"
+						aria-label="Close"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			)}
 			<section className="form-section">
 				<h2>Login</h2>
 				<Formik
