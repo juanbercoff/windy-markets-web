@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
+import ModalCarousel from './ModalCarousel';
 
 const Dropdown = ({ tradeValues }) => {
 	const [open, setIsOpen] = useState(false);
+	const [carouselIsOpen, setCarouselIsOpen] = useState(false);
+	const [images, setImages] = useState([]);
 	const [action, setAction] = useState(null);
 	const closedStatus = 'sold';
 
@@ -35,6 +38,22 @@ const Dropdown = ({ tradeValues }) => {
 				return console.log('Trade was confirmed');
 			});
 		});
+	};
+
+	const getImages = () => {
+		return fetch('api/images/tradeImages/' + tradeValues.id, {
+			method: 'GET',
+			credentials: 'include',
+		})
+			.then((res) => {
+				if (res.ok) {
+					return res.json();
+				}
+			})
+			.then((images) => {
+				console.log(images);
+				setImages(images);
+			});
 	};
 
 	return (
@@ -109,8 +128,25 @@ const Dropdown = ({ tradeValues }) => {
 					)}
 
 					<div className="dropdown-divider"></div>
-					<button type="button" className="dropdown-item">
-						Open Image
+					<button
+						type="button"
+						className="dropdown-item"
+						onClick={() => {
+							getImages();
+							return setCarouselIsOpen(true);
+						}}
+					>
+						Open Images
+					</button>
+					<button
+						type="button"
+						className="dropdown-item"
+						onClick={() => {
+							setAction('addImage');
+							return setIsOpen(true);
+						}}
+					>
+						Add Image
 					</button>
 				</div>
 			</div>
@@ -120,6 +156,13 @@ const Dropdown = ({ tradeValues }) => {
 				tradeValues={tradeValues}
 				onClose={() => {
 					setIsOpen(false);
+				}}
+			/>
+			<ModalCarousel
+				isOpen={carouselIsOpen}
+				images={images}
+				onClose={() => {
+					setCarouselIsOpen(false);
 				}}
 			/>
 		</div>

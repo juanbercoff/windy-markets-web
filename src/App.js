@@ -3,12 +3,11 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import TradeForm from './components/TradeForm';
-import ModifyTradeForm from './components/ModifyTradeForm';
 import TradesList from './components/TradeList';
 import WindyTrades from './components/WindyTrades';
 
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,6 +15,7 @@ import { useEffect } from 'react';
 
 function App() {
 	const token = localStorage.getItem('token');
+	const role = localStorage.getItem('role');
 	const history = useHistory();
 
 	useEffect(() => {
@@ -32,12 +32,6 @@ function App() {
 				</Route>
 				<Route exact path="/register">
 					<Register />
-				</Route>
-				<Route exact path="/modifyTradeForm">
-					<ModifyTradeForm />
-				</Route>
-				<Route exact path="/addTrade">
-					<TradeForm />
 				</Route>
 				<Route exact path="/openTrades">
 					<div>
@@ -63,7 +57,12 @@ function App() {
 						</Container>
 					</div>
 				</Route>
-				<ProtectedRoute exact path="/dashboard" component={Dashboard} />
+				{role === 'admin' ? (
+					<ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
+				) : (
+					<ProtectedRoute exact path="/dashboard" component={Dashboard} />
+				)}
+
 				<ProtectedRoute exact path="/windyTrades" component={WindyTrades} />
 				<Route exact path="/">
 					<div>

@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
-const TradeForm = () => {
+const TradeForm = ({ onClose }) => {
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
@@ -27,7 +27,7 @@ const TradeForm = () => {
 			body: formData,
 		}).then((res) => {
 			if (res.status === 200) {
-				return history.push('/dashboard');
+				return window.location.reload();
 			}
 			res.json().then((data) => {
 				return setErrors([...errors, data.msg]);
@@ -144,11 +144,17 @@ const TradeForm = () => {
 
 								<div className="row justify-content-center">
 									<button
-										className="btn btn-primary btn-block"
+										className="btn btn-primary btn-block mt-4"
 										type="submit"
 										disabled={isSubmitting}
 									>
 										Submit
+									</button>
+									<button
+										className="btn btn-dark btn-block mt-2"
+										onClick={onClose}
+									>
+										Cancel
 									</button>
 								</div>
 							</form>

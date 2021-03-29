@@ -3,6 +3,8 @@ import ReactDom from 'react-dom';
 import ModifyTradeForm from './ModifyTradeForm';
 import CloseTrade from './CloseTradeForm';
 import AddUserTrade from './AddUserTrade';
+import TradeForm from './TradeForm';
+import AddImageForm from './Common/AddImageForm';
 import styled from 'styled-components';
 
 const Modal = ({ isOpen, tradeValues, onClose, action }) => {
@@ -16,6 +18,10 @@ const Modal = ({ isOpen, tradeValues, onClose, action }) => {
 					<ModifyTradeForm tradeValues={tradeValues} onClose={onClose} />
 				) : action === 'closing' ? (
 					<CloseTrade tradeValues={tradeValues} onClose={onClose} />
+				) : action === 'newTrade' ? (
+					<TradeForm onClose={onClose} />
+				) : action === 'addImage' ? (
+					<AddImageForm tradeValues={tradeValues} onClose={onClose} />
 				) : (
 					<AddUserTrade tradeValues={tradeValues} onClose={onClose} />
 				)}

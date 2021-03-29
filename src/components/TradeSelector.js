@@ -24,8 +24,8 @@ function TradeSelector({ tradeSelectorToggler, isOpen }) {
 					}}
 					isOpen={isOpen}
 				>
-					Today's
-					<br /> trades
+					Trades
+					<br /> today
 				</ListItemOpen>
 			</List>
 		</ListContainer>
