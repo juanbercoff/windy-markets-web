@@ -1,28 +1,27 @@
 import './App.css';
+import { Switch, Route, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import { useEffect } from 'react';
+
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import TradesList from './components/TradeList';
 import WindyTrades from './components/WindyTrades';
-
 import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import { Switch, Route, useHistory } from 'react-router-dom';
-import styled from 'styled-components';
-import { useEffect } from 'react';
 
 function App() {
 	const token = localStorage.getItem('token');
 	const role = localStorage.getItem('role');
 	const history = useHistory();
-
 	useEffect(() => {
 		if (token) {
 			history.push('/dashboard');
 		}
-	}, [token, history]);
+	}, [token, history, role]);
 
 	return (
 		<div className="body-container">

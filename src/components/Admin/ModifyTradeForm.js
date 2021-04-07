@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import FormGroup from './FormGroup';
+//import { useHistory } from 'react-router-dom';
+import FormGroup from '../FormGroup';
 
-const TradeForm = ({ onClose }) => {
+const ModifyTradeForm = ({ tradeValues, onClose }) => {
+	//const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
@@ -10,18 +12,12 @@ const TradeForm = ({ onClose }) => {
 	};
 
 	const submitTradeHandler = (data) => {
-		let formData = new FormData();
-		//TODO input validation
-		formData.append('stock', data.stock);
-		formData.append('contractType', data.contractType);
-		formData.append('strike', data.strike);
-		formData.append('price', data.price === '' ? null : data.price);
-		formData.append('expirationDate', data.expirationDate);
-		formData.append('image', data.image);
-
-		return fetch('/api/trades', {
-			method: 'POST',
-			body: formData,
+		return fetch('/api/trades/' + tradeValues.id, {
+			method: 'PUT',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		}).then((res) => {
 			if (res.status === 200) {
 				return window.location.reload();
@@ -54,15 +50,14 @@ const TradeForm = ({ onClose }) => {
 						</div>
 					</div>
 				) : null}
-				<section className="col-12 col-sm-6 col-md-4">
+				<section>
 					<Formik
 						initialValues={{
-							stock: '',
-							contractType: '',
-							strike: '',
-							price: '',
-							expirationDate: '',
-							image: null,
+							stock: tradeValues.stock,
+							contractType: tradeValues.contractType,
+							strike: tradeValues.strike,
+							price: tradeValues.price,
+							expirationDate: tradeValues.expirationDate,
 						}}
 						onSubmit={async (values, { setSubmitting }) => {
 							await submitTradeHandler(values);
@@ -84,29 +79,23 @@ const TradeForm = ({ onClose }) => {
 								className="form-container"
 								onSubmit={handleSubmit}
 							>
-								<h4 className="text-center font-weight-bold"> Add Trade </h4>
+								<h4 className="text-center font-weight-bold"> Modify Trade </h4>
 								<FormGroup
-									label="Symbol"
+									label="Stock"
 									type="text"
 									name="stock"
 									onChange={handleChange}
 									onBlur={handleBlur}
 									value={values.stock}
 								/>
-								<label>Option</label>
-								<select
+								<FormGroup
+									label="Contract Type"
+									type="text"
+									name="contractType"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									className="form-select"
-									aria-label="Option"
-									name="contractType"
-								>
-									<option hidden value="">
-										Select an option
-									</option>
-									<option value="Put">Put</option>
-									<option value="Call">Call</option>
-								</select>
+									value={values.contractType}
+								/>
 								<FormGroup
 									label="Strike"
 									type="text"
@@ -117,7 +106,7 @@ const TradeForm = ({ onClose }) => {
 								/>
 								<FormGroup
 									label="Price"
-									type="number"
+									type="text"
 									name="price"
 									onChange={handleChange}
 									onBlur={handleBlur}
@@ -131,26 +120,18 @@ const TradeForm = ({ onClose }) => {
 									onBlur={handleBlur}
 									value={values.expirationDate}
 								/>
-								<FormGroup
-									label="Image"
-									type="file"
-									name="image"
-									onChange={(event) => {
-										setFieldValue('image', event.currentTarget.files[0]);
-									}}
-									onBlur={handleBlur}
-								/>
 
-								<div className="row justify-content-center">
+								<div className="row justify-content-around">
 									<button
-										className="btn btn-primary btn-block mt-4"
+										className="btn btn-dark btn-block mt-4"
 										type="submit"
 										disabled={isSubmitting}
 									>
 										Submit
 									</button>
 									<button
-										className="btn btn-dark btn-block mt-2"
+										className="btn btn-secondary btn-block mt-2"
+										type="button"
 										onClick={onClose}
 									>
 										Cancel
@@ -165,4 +146,4 @@ const TradeForm = ({ onClose }) => {
 	);
 };
 
-export default TradeForm;
+export default ModifyTradeForm;

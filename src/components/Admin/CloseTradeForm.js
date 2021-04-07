@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 //import { useHistory } from 'react-router-dom';
-import FormGroup from './FormGroup';
+import FormGroup from '../FormGroup';
 
-const ModifyTradeForm = ({ tradeValues, onClose }) => {
+const CloseTradeForm = ({ tradeValues, onClose, requestURL }) => {
 	//const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
@@ -12,18 +12,12 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 	};
 
 	const submitTradeHandler = (data) => {
-		let formData = new FormData();
 		//TODO input validation
-		formData.append('stock', data.stock);
-		formData.append('contractType', data.contractType);
-		formData.append('price', data.price);
-		formData.append('strike', data.strike);
-		formData.append('expirationDate', data.expirationDate);
-		formData.append('image', data.image);
 
-		return fetch('/api/trades/' + tradeValues.id, {
+		return fetch(requestURL + tradeValues.id, {
 			method: 'PUT',
-			body: formData,
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ closePrice: data.closePrice }),
 		}).then((res) => {
 			if (res.status === 200) {
 				return window.location.reload();
@@ -59,12 +53,7 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 				<section>
 					<Formik
 						initialValues={{
-							stock: tradeValues.stock,
-							contractType: tradeValues.contractType,
-							strike: tradeValues.strike,
-							price: tradeValues.price,
-							expirationDate: tradeValues.expirationDate,
-							image: null,
+							closePrice: '',
 						}}
 						onSubmit={async (values, { setSubmitting }) => {
 							await submitTradeHandler(values);
@@ -86,55 +75,14 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 								className="form-container"
 								onSubmit={handleSubmit}
 							>
-								<h4 className="text-center font-weight-bold"> Modify Trade </h4>
+								<h4 className="text-center font-weight-bold"> Close Trade </h4>
 								<FormGroup
-									label="Stock"
-									type="text"
-									name="stock"
+									label="Close Price"
+									type="number"
+									name="closePrice"
 									onChange={handleChange}
 									onBlur={handleBlur}
-									value={values.stock}
-								/>
-								<FormGroup
-									label="Contract Type"
-									type="text"
-									name="contractType"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.contractType}
-								/>
-								<FormGroup
-									label="Strike"
-									type="text"
-									name="strike"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.strike}
-								/>
-								<FormGroup
-									label="Price"
-									type="text"
-									name="price"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.price}
-								/>
-								<FormGroup
-									label="Expiration Date"
-									type="date"
-									name="expirationDate"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.expirationDate}
-								/>
-								<FormGroup
-									label="Image"
-									type="file"
-									name="image"
-									onChange={(event) => {
-										setFieldValue('image', event.currentTarget.files[0]);
-									}}
-									onBlur={handleBlur}
+									value={values.closePrice}
 								/>
 
 								<div className="row justify-content-around">
@@ -162,4 +110,4 @@ const ModifyTradeForm = ({ tradeValues, onClose }) => {
 	);
 };
 
-export default ModifyTradeForm;
+export default CloseTradeForm;

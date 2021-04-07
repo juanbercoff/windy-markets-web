@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import TradeList from '../TradeList';
 import TradeSelector from './TradeSelector';
 import ProfileMenu from '../ProfileMenu';
+import Dropdown from './Dropdown';
 
 function AdminDashboard() {
-	const userId = localStorage.getItem('userId');
 	const [data, setData] = useState([]);
 	const [profileMenuToggle, setProfileMenuToggle] = useState(false);
 	useEffect(() => {
@@ -43,12 +43,7 @@ function AdminDashboard() {
 					return setProfileMenuToggle(!profileMenuToggle);
 				}}
 			/>
-			<TradeList
-				title=""
-				data={data}
-				dropdownDisplay={true}
-				tradeType={'trade'}
-			/>
+			<TradeList title="" data={data} dropdown={Dropdown} tradeType={'trade'} />
 		</Container>
 	);
 }

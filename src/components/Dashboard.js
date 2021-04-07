@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import TradeList from './TradeList';
 import TradeSelector from './TradeSelector';
 import ProfileMenu from './ProfileMenu';
+import Dropdown from './User/Dropdown';
 
 function Dashboard() {
 	const userId = localStorage.getItem('userId');
@@ -12,14 +13,13 @@ function Dashboard() {
 	const [isOpen, setIsOpen] = useState(true);
 	const [profileMenuToggle, setProfileMenuToggle] = useState(false);
 	let requestURL;
+	if (isOpen) {
+		requestURL = '/api/trades/current';
+	} else {
+		requestURL = '/api/userTrades/all/' + userId;
+	}
 	useEffect(() => {
 		const getData = () => {
-			if (isOpen) {
-				requestURL = '/api/trades/current';
-			} else {
-				requestURL = '/api/userTrades/all/' + userId;
-			}
-
 			return fetch(requestURL, { method: 'GET', credentials: 'include' })
 				.then((res) => {
 					if (res.ok) {
@@ -27,7 +27,6 @@ function Dashboard() {
 					}
 				})
 				.then((trades) => {
-					console.log(trades);
 					setData([...trades]);
 				});
 		};
@@ -59,16 +58,14 @@ function Dashboard() {
 				<TradeList
 					title=""
 					data={data}
-					requestURL="/api/trades/current"
-					dropdownDisplay={true}
+					dropdown={Dropdown}
 					tradeType={'trade'}
 				/>
 			) : (
 				<TradeList
 					title=""
 					data={data}
-					requestURL={'/api/userTrades/all/19'}
-					dropdownDisplay={true}
+					dropdown={Dropdown}
 					tradeType={'userTrade'}
 				/>
 			)}

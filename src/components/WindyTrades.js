@@ -7,7 +7,6 @@ import ProfileMenu from './ProfileMenu';
 
 function WindyTrades() {
 	const [data, setData] = useState([]);
-	const [isOpen, setIsOpen] = useState(true);
 	const [profileMenuToggle, setProfileMenuToggle] = useState(false);
 
 	useEffect(() => {
@@ -43,7 +42,6 @@ function WindyTrades() {
 					title="Past Trades"
 					data={data}
 					requestURL="/api/trades/all"
-					dropdownDisplay={false}
 					tradeType={'trade'}
 				/>
 			</Wrapper>

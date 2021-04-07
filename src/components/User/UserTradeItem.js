@@ -1,5 +1,4 @@
 import React from 'react';
-import Dropdown from './Dropdown';
 
 const months = [
 	'Jan',
@@ -16,10 +15,10 @@ const months = [
 	'Dec',
 ];
 
-const TradeItem = ({ tradeValues, dropdownDisplay }) => {
+const TradeItem = ({ tradeValues, dropdown }) => {
+	const Dropdown = dropdown;
 	const formatDate = (dateAsString) => {
 		const date = new Date(dateAsString);
-
 		const monthName = months[date.getMonth()];
 		const dayOfMonth = date.getDate();
 
@@ -31,11 +30,11 @@ const TradeItem = ({ tradeValues, dropdownDisplay }) => {
 		let timeDiff = new Date() - date;
 		timeDiff /= 1000;
 		if (timeDiff < 60) {
-			return Math.round(timeDiff) + ' seconds ago.';
+			return Math.round(timeDiff) + ' sec(s) ago.';
 		} else if (timeDiff < 3600) {
-			return Math.round(timeDiff / 60) + ' minute(s) ago.';
+			return Math.round(timeDiff / 60) + ' min(s) ago.';
 		} else {
-			return Math.round(timeDiff / 3600) + ' hour(s) ago.';
+			return Math.round(timeDiff / 3600) + ' hs ago.';
 		}
 	};
 
@@ -43,23 +42,26 @@ const TradeItem = ({ tradeValues, dropdownDisplay }) => {
 		<li className="list-group-item list-group-item-dark d-flex flex-column pb-0">
 			<div className="d-flex flex-row justify-content-between">
 				<div>
-					BUY {tradeValues.contractType.toUpperCase()} of{' '}
-					{tradeValues.stock.toUpperCase()} strike {tradeValues.strike} at{' '}
-					{tradeValues.price ? tradeValues.price + '$' : ' market price '} EXP{' '}
-					{formatDate(tradeValues.expirationDate)}{' '}
+					BOUGHT {tradeValues.trade.contractType.toUpperCase()} of{' '}
+					{tradeValues.trade.stock.toUpperCase()} strike{' '}
+					{tradeValues.trade.strike} at ${tradeValues.price} EXP{' '}
+					{formatDate(tradeValues.trade.expirationDate)}{' '}
 					{tradeValues.closePrice
-						? 'SOLD at ' + tradeValues.closePrice + '$'
+						? 'SOLD at ' + '$' + tradeValues.closePrice
 						: null}
 				</div>
-				{dropdownDisplay ? <Dropdown tradeValues={tradeValues} /> : null}
+				{Dropdown ? (
+					<Dropdown tradeValues={tradeValues} followed={true} />
+				) : null}
 			</div>
-			<div className="d-flex w-100 pt-1">
-				<small>
-					{tradeValues.status.toUpperCase() +
-						' ' +
-						formatElapsedTime(tradeValues.updatedAt)}
-				</small>
-			</div>
+			{
+				<div className="d-flex w-100 pt-1">
+					<small>
+						{(tradeValues.status === 'open' ? 'FOLLOWED ' : 'SOLD ') +
+							formatElapsedTime(tradeValues.updatedAt)}
+					</small>
+				</div>
+			}
 		</li>
 	);
 };

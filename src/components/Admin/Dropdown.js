@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import ModalCarousel from './ModalCarousel';
+import Modal from '../Modal';
+import ModalCarousel from '../ModalCarousel';
 
 const Dropdown = ({ tradeValues }) => {
 	const [open, setIsOpen] = useState(false);
@@ -9,7 +9,6 @@ const Dropdown = ({ tradeValues }) => {
 	const [action, setAction] = useState(null);
 	const closedStatus = 'sold';
 
-	const role = localStorage.getItem('role');
 	const deleteTrade = () => {
 		return fetch('/api/trades/', {
 			method: 'DELETE',
@@ -28,7 +27,7 @@ const Dropdown = ({ tradeValues }) => {
 	};
 
 	const confirmTrade = () => {
-		return fetch('/api/trades/status/' + tradeValues.id, {
+		return fetch('/api/trades/confirm/' + tradeValues.id, {
 			method: 'PUT',
 		}).then((res) => {
 			if (res.status === 200) {
@@ -68,29 +67,29 @@ const Dropdown = ({ tradeValues }) => {
 					aria-expanded="false"
 				></button>
 				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					{role === 'admin' ? (
-						<div>
-							<button
-								type="button"
-								className="dropdown-item"
-								disabled={tradeValues.status === closedStatus ? true : false}
-								onClick={() => {
-									setAction('updating');
-									return setIsOpen(true);
-								}}
-							>
-								Update
-							</button>
+					<div>
+						<button
+							type="button"
+							className="dropdown-item"
+							disabled={tradeValues.status === closedStatus ? true : false}
+							onClick={() => {
+								setAction('updating');
+								return setIsOpen(true);
+							}}
+						>
+							Update
+						</button>
 
-							<button
-								type="button"
-								disabled={tradeValues.status === closedStatus ? true : false}
-								className="dropdown-item"
-								onClick={deleteTrade}
-							>
-								Delete
-							</button>
-							{tradeValues.status === 'filled' ? (
+						<button
+							type="button"
+							disabled={tradeValues.status === closedStatus ? true : false}
+							className="dropdown-item"
+							onClick={deleteTrade}
+						>
+							Delete
+						</button>
+						{tradeValues.status === 'filled' ? (
+							<>
 								<button
 									type="button"
 									disabled={tradeValues.status === closedStatus ? true : false}
@@ -102,31 +101,35 @@ const Dropdown = ({ tradeValues }) => {
 								>
 									Sell
 								</button>
-							) : (
 								<button
 									type="button"
 									disabled={tradeValues.status === closedStatus ? true : false}
 									className="dropdown-item"
-									onClick={confirmTrade}
+									onClick={() => {
+										setAction('roll');
+										return setIsOpen(true);
+									}}
 								>
-									Confirm
+									Roll
 								</button>
-							)}
-						</div>
-					) : (
-						<button
-							type="button"
-							className="dropdown-item"
-							disabled={tradeValues.status === closedStatus ? true : false}
-							onClick={() => {
-								setAction('adding');
-								return setIsOpen(true);
-							}}
-						>
-							Follow
-						</button>
-					)}
-
+							</>
+						) : (
+							<button
+								type="button"
+								disabled={tradeValues.status === closedStatus ? true : false}
+								className="dropdown-item"
+								onClick={() => {
+									if (tradeValues.price) {
+										return confirmTrade();
+									}
+									setAction('confirm');
+									return setIsOpen(true);
+								}}
+							>
+								Confirm
+							</button>
+						)}
+					</div>
 					<div className="dropdown-divider"></div>
 					<button
 						type="button"

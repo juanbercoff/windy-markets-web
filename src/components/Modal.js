@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import ModifyTradeForm from './ModifyTradeForm';
-import CloseTrade from './CloseTradeForm';
-import AddUserTrade from './AddUserTrade';
+import ModifyTradeForm from './Admin/ModifyTradeForm';
+import CloseTrade from './Admin/CloseTradeForm';
+import AddUserTrade from './User/AddUserTrade';
 import TradeForm from './TradeForm';
 import AddImageForm from './Common/AddImageForm';
+import ConfirmTradeForm from './Admin/ConfirmTradeForm';
 import styled from 'styled-components';
 
-const Modal = ({ isOpen, tradeValues, onClose, action }) => {
+const Modal = ({ isOpen, tradeValues, onClose, action, closeRequestURL }) => {
 	if (!isOpen) {
 		return null;
 	}
@@ -17,11 +18,23 @@ const Modal = ({ isOpen, tradeValues, onClose, action }) => {
 				{action === 'updating' ? (
 					<ModifyTradeForm tradeValues={tradeValues} onClose={onClose} />
 				) : action === 'closing' ? (
-					<CloseTrade tradeValues={tradeValues} onClose={onClose} />
+					<CloseTrade
+						tradeValues={tradeValues}
+						onClose={onClose}
+						requestURL={'/api/trades/close/'}
+					/>
 				) : action === 'newTrade' ? (
 					<TradeForm onClose={onClose} />
 				) : action === 'addImage' ? (
 					<AddImageForm tradeValues={tradeValues} onClose={onClose} />
+				) : action === 'confirm' ? (
+					<ConfirmTradeForm tradeValues={tradeValues} onClose={onClose} />
+				) : action === 'roll' ? (
+					<CloseTrade
+						tradeValues={tradeValues}
+						onClose={onClose}
+						requestURL={'/api/trades/roll/'}
+					/>
 				) : (
 					<AddUserTrade tradeValues={tradeValues} onClose={onClose} />
 				)}

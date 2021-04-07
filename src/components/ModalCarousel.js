@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 import styled from 'styled-components';
-import imageSrc from '../public/images/trade-images/image-1616965995426-801493046.jpeg';
 
 const ModalCarousel = ({ isOpen, onClose, images }) => {
 	if (!isOpen) {
@@ -9,9 +8,10 @@ const ModalCarousel = ({ isOpen, onClose, images }) => {
 	}
 
 	const listImages = images.map((image, index) => {
+		console.log(index);
 		return (
 			<div
-				className={index === 1 ? 'carousel-item active' : 'carousel-item'}
+				className={index === 0 ? 'carousel-item active' : 'carousel-item'}
 				key={image.id}
 			>
 				<img

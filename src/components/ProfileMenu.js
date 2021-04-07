@@ -14,6 +14,8 @@ function ProfileMenu({ displayProfileMenu, handleClick }) {
 		})
 			.then(() => {
 				localStorage.removeItem('token');
+				localStorage.removeItem('role');
+				localStorage.removeItem('userId');
 				history.push('/');
 			})
 			.catch((err) => console.log(err));

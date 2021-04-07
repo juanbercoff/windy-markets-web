@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 //import { useHistory } from 'react-router-dom';
-import FormGroup from './FormGroup';
+import FormGroup from '../FormGroup';
 
-const AddUserTrade = ({ tradeValues, onClose }) => {
+const ConfirmTradeForm = ({ tradeValues, onClose, requestURL }) => {
+	//const history = useHistory();
 	const [errors, setErrors] = useState([]);
 
 	const removingErrors = () => {
@@ -11,23 +12,22 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 	};
 
 	const submitTradeHandler = (data) => {
-		let formData = new FormData();
 		//TODO input validation
-		formData.append('price', data.price);
-		formData.append('amount', data.amount);
-		formData.append('image', data.image);
-		formData.append('userId', 19);
-		formData.append('tradeId', tradeValues.id);
-
-		return fetch('/api/userTrades', {
-			method: 'POST',
-			body: formData,
+		console.log(data.price);
+		return fetch('/api/trades/confirm/' + tradeValues.id, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				price: data.price,
+			}),
 		}).then((res) => {
 			if (res.status === 200) {
-				return console.log('success');
+				return window.location.reload();
 			}
-			res.json().then((data) => {
-				return console.log(data);
+			res.json().then(() => {
+				return console.log('Trade was confirmed');
 			});
 		});
 	};
@@ -58,8 +58,6 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 					<Formik
 						initialValues={{
 							price: '',
-							amount: '',
-							image: null,
 						}}
 						onSubmit={async (values, { setSubmitting }) => {
 							await submitTradeHandler(values);
@@ -81,7 +79,10 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 								className="form-container"
 								onSubmit={handleSubmit}
 							>
-								<h4 className="text-center font-weight-bold"> Follow Trade </h4>
+								<h4 className="text-center font-weight-bold">
+									{' '}
+									Confirm Trade{' '}
+								</h4>
 								<FormGroup
 									label="Price"
 									type="number"
@@ -90,23 +91,6 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 									onBlur={handleBlur}
 									value={values.price}
 								/>
-								<FormGroup
-									label="Amount"
-									type="number"
-									name="amount"
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.amount}
-								/>
-								<FormGroup
-									label="Image"
-									type="file"
-									name="image"
-									onChange={(event) => {
-										setFieldValue('image', event.currentTarget.files[0]);
-									}}
-									onBlur={handleBlur}
-								/>
 
 								<div className="row justify-content-around">
 									<button
@@ -114,7 +98,7 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 										type="submit"
 										disabled={isSubmitting}
 									>
-										Submit
+										Confirm Trade
 									</button>
 									<button
 										className="btn btn-secondary btn-block mt-2"
@@ -133,4 +117,4 @@ const AddUserTrade = ({ tradeValues, onClose }) => {
 	);
 };
 
-export default AddUserTrade;
+export default ConfirmTradeForm;

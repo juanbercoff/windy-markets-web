@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useHistory } from 'react-router-dom';
 import FormGroup from './FormGroup';
 
 const Login = () => {
 	const [msg, setMsg] = useState(null);
-	let history = useHistory();
 
 	const loginHandler = (data) => {
 		//TODO input validation
@@ -26,7 +24,7 @@ const Login = () => {
 				localStorage.setItem('token', data.token);
 				localStorage.setItem('role', data.role);
 				localStorage.setItem('userId', data.userId);
-				history.push('/dashboard');
+				return window.location.reload();
 			})
 			.catch((err) => {
 				console.log(err);
