@@ -21,7 +21,7 @@ const Modal = ({ isOpen, tradeValues, onClose, action, closeRequestURL }) => {
 					<CloseTrade
 						tradeValues={tradeValues}
 						onClose={onClose}
-						requestURL={'/api/trades/close/'}
+						requestURL={closeRequestURL}
 					/>
 				) : action === 'newTrade' ? (
 					<TradeForm onClose={onClose} />

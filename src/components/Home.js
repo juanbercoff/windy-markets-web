@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import bigCircle from '../public/images/big-eclipse.svg';
 import mediumCircle from '../public/images/mid-eclipse.svg';
 import smallCircle from '../public/images/small-eclipse.svg';
 
 function Home() {
+	useEffect(() => {
+		const arrow = document.querySelector('.next-section-arrow');
+
+		arrow.addEventListener('click', () => {
+			window.scroll({
+				top: 1000,
+				left: 0,
+				behavior: 'smooth',
+			});
+			arrow.style.display = 'none';
+		});
+	}, []);
+
 	return (
 		<div className="home-container" id="home">
 			<section className="presentation">
@@ -21,6 +34,23 @@ function Home() {
 				></img>
 				<img className="small-circle" src={smallCircle} alt="smallCircle"></img>
 			</section>
+			<svg
+				className="next-section-arrow"
+				style={{ overflow: 'visible' }}
+				width="250"
+				height="250"
+				viewBox="0 0 152 131"
+				fill="white"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d={
+						'M20.7751 25.049C20.375 25.5399 19.625 25.5399 19.2249 25.049L0.545442 2.1318C0.012989 1.47855 0.477818 0.5 1.32058 0.5L38.6794 0.5C39.5222 0.5 39.987 1.47855 39.4546 2.1318L20.7751 25.049Z'
+					}
+					stroke="white"
+					strokeWidth="2"
+				/>
+			</svg>
 			<section className="whatWeDo-container" id="whatWeDo">
 				<section className="options">
 					<p>

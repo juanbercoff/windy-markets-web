@@ -281,6 +281,16 @@ a:hover {
 	font-size: 14px;
 }
 
+.next-section-arrow {
+	position: fixed;
+	left: 50%;
+	opacity: 0.5;
+}
+
+.next-section-arrow:hover {
+	opacity: 1;
+}
+
 @keyframes drop {
 	0% {
 		opacity: 0;
@@ -370,6 +380,10 @@ a:hover {
 	.options {
 		flex-direction: column;
 		padding-top: 10em;
+	}
+
+	.next-section-arrow {
+		display: none;
 	}
 }
 

@@ -157,6 +157,7 @@ const Dropdown = ({ tradeValues }) => {
 				isOpen={open}
 				action={action}
 				tradeValues={tradeValues}
+				closeRequestURL={'/api/trades/close/' + tradeValues.id}
 				onClose={() => {
 					setIsOpen(false);
 				}}

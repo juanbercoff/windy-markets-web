@@ -40,27 +40,22 @@ const TradeItem = ({ tradeValues, dropdown }) => {
 	};
 
 	const calculateTrade = () => {
-		const netResult = Math.round(
-			(tradeValues.price / tradeValues.closePrice - 1) * 100
+		const netValue = Math.round(
+			((tradeValues.closePrice - tradeValues.price) / tradeValues.price) * 100
 		);
-		if (tradeValues.contractType === 'Call') {
-			if (netResult > 0) {
-				return 'LOSS ' + netResult + '%';
-			}
-			return 'GAIN ' + Math.abs(netResult) + '%';
-		} else {
-			if (netResult > 0) {
-				return 'GAIN ' + netResult + '%';
-			}
-			return 'LOSS ' + Math.abs(netResult) + '%';
+
+		if (netValue > 0) {
+			return `GAIN ${netValue}%`;
 		}
+		return `LOSS ${Math.abs(netValue)}%`;
 	};
 
 	return (
 		<li className="list-group-item list-group-item-dark d-flex flex-column pb-0">
 			<div className="d-flex flex-row justify-content-between">
 				<div>
-					BUY {tradeValues.contractType.toUpperCase()} of{' '}
+					{!tradeValues.closePrice ? 'BUY' : null}{' '}
+					{tradeValues.contractType.toUpperCase()} of{' '}
 					{tradeValues.stock.toUpperCase()} strike {tradeValues.strike} at{' '}
 					{tradeValues.price ? '$' + tradeValues.price : ' Market Price '} EXP{' '}
 					{formatDate(tradeValues.expirationDate)}{' '}

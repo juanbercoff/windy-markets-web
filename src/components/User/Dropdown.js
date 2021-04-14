@@ -8,6 +8,7 @@ const Dropdown = ({ tradeValues, followed }) => {
 	const [images, setImages] = useState([]);
 	const [action, setAction] = useState(null);
 	const closedStatus = 'sold';
+	const rolledStatus = 'rolled';
 
 	const getImages = () => {
 		return fetch('api/images/tradeImages/' + tradeValues.id, {
@@ -53,7 +54,12 @@ const Dropdown = ({ tradeValues, followed }) => {
 						<button
 							type="button"
 							className="dropdown-item"
-							disabled={tradeValues.status === closedStatus ? true : false}
+							disabled={
+								tradeValues.status === closedStatus ||
+								tradeValues.status === rolledStatus
+									? true
+									: false
+							}
 							onClick={() => {
 								setAction('adding');
 								return setIsOpen(true);
@@ -80,7 +86,7 @@ const Dropdown = ({ tradeValues, followed }) => {
 				isOpen={open}
 				action={action}
 				tradeValues={tradeValues}
-				closeRequestURL={'/api/userTrades/close/'}
+				closeRequestURL={'/api/userTrades/close/' + tradeValues.id}
 				onClose={() => {
 					setIsOpen(false);
 				}}

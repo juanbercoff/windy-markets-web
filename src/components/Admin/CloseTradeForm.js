@@ -14,7 +14,7 @@ const CloseTradeForm = ({ tradeValues, onClose, requestURL }) => {
 	const submitTradeHandler = (data) => {
 		//TODO input validation
 
-		return fetch(requestURL + tradeValues.id, {
+		return fetch(requestURL, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ closePrice: data.closePrice }),
