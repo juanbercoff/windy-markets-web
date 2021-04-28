@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { io } from 'socket.io-client';
 
 import Account from '../Account';
 import styled from 'styled-components';
@@ -7,10 +8,16 @@ import TradeSelector from './TradeSelector';
 import ProfileMenu from '../ProfileMenu';
 import Dropdown from './Dropdown';
 
+const socket = io();
+
 function AdminDashboard() {
 	const [data, setData] = useState([]);
 	const [profileMenuToggle, setProfileMenuToggle] = useState(false);
+
 	useEffect(() => {
+		socket.on('newtrade', (arg) => {
+			console.log(arg); // world
+		});
 		const getData = () => {
 			return fetch('/api/trades/current', {
 				method: 'GET',

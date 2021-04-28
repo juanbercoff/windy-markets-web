@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { io } from 'socket.io-client';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Account from './Account';
 import styled from 'styled-components';
@@ -6,6 +8,10 @@ import TradeList from './TradeList';
 import TradeSelector from './TradeSelector';
 import ProfileMenu from './ProfileMenu';
 import Dropdown from './User/Dropdown';
+import { ToastContainer, toast } from 'react-toastify';
+import { newTrade, confirmedTrade, deletedTrade, tradeText } from '../helpers';
+
+const socket = io();
 
 function Dashboard() {
 	const userId = localStorage.getItem('userId');
@@ -21,6 +27,18 @@ function Dashboard() {
 	}
 
 	useEffect(() => {
+		socket.on('newtrade', (arg) => {
+			toast(newTrade(arg));
+		});
+		socket.on('confirmedTrade', (arg) => {
+			toast(confirmedTrade(arg));
+		});
+		socket.on('deletedTrade', (arg) => {
+			toast(deletedTrade(arg));
+		});
+		socket.on('soldTrade', (arg) => {
+			toast(tradeText(arg));
+		});
 		const getData = () => {
 			setIsFetching(true);
 			return fetch(requestURL, { method: 'GET', credentials: 'include' })
@@ -39,6 +57,7 @@ function Dashboard() {
 
 	return (
 		<Container>
+			<ToastContainer />
 			<Account
 				handleClick={() => {
 					return setProfileMenuToggle(!profileMenuToggle);
