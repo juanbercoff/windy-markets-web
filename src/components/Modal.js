@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import ModifyTradeForm from './Admin/ModifyTradeForm';
 import CloseTrade from './Admin/CloseTradeForm';
-import AddUserTrade from './User/AddUserTrade';
 import TradeForm from './TradeForm';
 import AddImageForm from './Common/AddImageForm';
 import ConfirmTradeForm from './Admin/ConfirmTradeForm';
@@ -29,14 +28,12 @@ const Modal = ({ isOpen, tradeValues, onClose, action, closeRequestURL }) => {
 					<AddImageForm tradeValues={tradeValues} onClose={onClose} />
 				) : action === 'confirm' ? (
 					<ConfirmTradeForm tradeValues={tradeValues} onClose={onClose} />
-				) : action === 'roll' ? (
+				) : (
 					<CloseTrade
 						tradeValues={tradeValues}
 						onClose={onClose}
 						requestURL={'/api/trades/roll/'}
 					/>
-				) : (
-					<AddUserTrade tradeValues={tradeValues} onClose={onClose} />
 				)}
 			</Wrapper>
 		</Overlay>,

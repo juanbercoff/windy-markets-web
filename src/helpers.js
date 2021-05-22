@@ -53,7 +53,7 @@ export function tradeText(tradeValues) {
 			  tradeValues.closePrice +
 			  ' ' +
 			  calculateTrade(tradeValues)
-			: null)
+			: '')
 	);
 }
 

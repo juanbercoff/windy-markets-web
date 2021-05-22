@@ -153,11 +153,11 @@ header {
 
 .cta-select {
 	background: rgb(75, 75, 75);
-	width: 100px;
+	width: 130px;
 	cursor: pointer;
 	font-size: 14px;
 	color: #ffffff;
-	border-radius: 10%;
+	border-radius: 6%;
 	border: 0;
 	transition: 0.2s;
 	text-decoration: none;

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import logo from '../public/images/logoBlackTransparent.png';
 //import triangle from '../public/images/triangle.svg'
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function NavBar() {
 	useEffect(() => {
@@ -43,9 +44,14 @@ function NavBar() {
 	}, []);
 
 	return (
-		<div>
+		<Container>
 			<nav className="burger-nav-container">
 				<ul className="burger-nav-links">
+					<li>
+						<Link className="burger-nav-link" to="/">
+							HOME
+						</Link>
+					</li>
 					<li>
 						<Link className="burger-nav-link" to="/pastTrades">
 							PAST TRADES
@@ -57,13 +63,8 @@ function NavBar() {
 						</Link>
 					</li>
 					<li>
-						<a href="/register" className="burger-nav-link" type="button">
-							REGISTER
-						</a>
-					</li>
-					<li>
-						<a href="/login" className="burger-nav-link" type="button">
-							LOGIN
+						<a href="/" className="burger-nav-link" type="button">
+							DOWNLOAD APP
 						</a>
 					</li>
 				</ul>
@@ -76,6 +77,11 @@ function NavBar() {
 				<nav className="nav-container">
 					<ul className="nav-links">
 						<li>
+							<Link className="nav-link" to="/">
+								HOME
+							</Link>
+						</li>
+						<li>
 							<Link className="nav-link" to="/pastTrades">
 								PAST TRADES
 							</Link>
@@ -87,11 +93,8 @@ function NavBar() {
 						</li>
 						<li>
 							<div className="cta">
-								<a href="/register" className="cta-select2" type="button">
-									Register
-								</a>
 								<a href="/login" className="cta-select" type="button">
-									Login
+									DOWNLOAD APP
 								</a>
 							</div>
 						</li>
@@ -104,8 +107,12 @@ function NavBar() {
 				<div className="line2"></div>
 				<div className="line3"></div>
 			</div>
-		</div>
+		</Container>
 	);
 }
+
+const Container = styled.div`
+	z-index: 5;
+`;
 
 export default NavBar;

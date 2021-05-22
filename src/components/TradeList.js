@@ -1,17 +1,10 @@
 import React from 'react';
 import TradeItem from './Common/TradeItem';
-import UserTradeItem from './User/UserTradeItem';
 
-const TradesList = ({ title, data, dropdown, tradeType }) => {
+const TradesList = ({ title, data, dropdown }) => {
 	const listTrades = data.map((trade) => {
-		return tradeType === 'trade' ? (
+		return (
 			<TradeItem
-				tradeValues={trade}
-				key={trade.id.toString()}
-				dropdown={dropdown}
-			/>
-		) : (
-			<UserTradeItem
 				tradeValues={trade}
 				key={trade.id.toString()}
 				dropdown={dropdown}
