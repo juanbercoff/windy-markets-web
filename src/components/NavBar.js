@@ -53,12 +53,12 @@ function NavBar() {
 						</Link>
 					</li>
 					<li>
-						<Link className="burger-nav-link" to="/pastTrades">
+						<Link className="burger-nav-link" to="/past-trades">
 							PAST TRADES
 						</Link>
 					</li>
 					<li>
-						<Link className="burger-nav-link" to="/openTrades">
+						<Link className="burger-nav-link" to="/open-trades">
 							OPEN TRADES
 						</Link>
 					</li>
@@ -82,12 +82,12 @@ function NavBar() {
 							</Link>
 						</li>
 						<li>
-							<Link className="nav-link" to="/pastTrades">
+							<Link className="nav-link" to="/past-trades">
 								PAST TRADES
 							</Link>
 						</li>
 						<li>
-							<Link className="nav-link" to="/openTrades">
+							<Link className="nav-link" to="/open-trades">
 								OPEN TRADES
 							</Link>
 						</li>

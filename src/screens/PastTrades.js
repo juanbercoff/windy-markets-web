@@ -10,12 +10,7 @@ export default function PastTrades({ requestURL }) {
 		<>
 			<NavBar />
 			<Container>
-				<TradesList
-					title="Past Trades"
-					data={trades}
-					requestURL={requestURL}
-					dropdownDisplay={false}
-				/>
+				<TradesList title="Past Trades" data={trades} dropdownDisplay={false} />
 			</Container>
 		</>
 	);

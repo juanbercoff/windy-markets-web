@@ -33,11 +33,11 @@ function App() {
 				<Route exact path="/register">
 					<Register />
 				</Route>
-				<Route exact path="/openTrades">
-					<OpenTrades requestURL="/api/trades/current" />
+				<Route exact path="/open-trades">
+					<OpenTrades requestURL={'/api/trades/current'} />
 				</Route>
-				<Route exact path="/pastTrades">
-					<PastTrades requestURL="/api/trades/past" />
+				<Route exact path="/past-trades">
+					<PastTrades requestURL={'http://161.35.8.242/api/trades/past'} />
 				</Route>
 				<ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
 

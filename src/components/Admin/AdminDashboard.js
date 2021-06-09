@@ -23,7 +23,6 @@ function AdminDashboard() {
 					}
 				})
 				.then((trades) => {
-					console.log(trades);
 					setData([...trades]);
 				});
 		};

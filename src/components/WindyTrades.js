@@ -11,7 +11,10 @@ function WindyTrades() {
 
 	useEffect(() => {
 		const getData = () => {
-			return fetch('/api/trades/all', { method: 'GET', credentials: 'include' })
+			return fetch('/api/trades/all', {
+				method: 'GET',
+				credentials: 'include',
+			})
 				.then((res) => {
 					if (res.ok) {
 						return res.json();
@@ -41,7 +44,7 @@ function WindyTrades() {
 				<TradeList
 					title="Past Trades"
 					data={data}
-					requestURL="/api/trades/all"
+					requestURL={'/api/trades/all'}
 					tradeType={'trade'}
 				/>
 			</Wrapper>
