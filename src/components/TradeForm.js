@@ -27,7 +27,7 @@ const TradeForm = ({ onClose }) => {
 				return window.location.reload();
 			}
 			res.json().then((data) => {
-				return setErrors([...errors, data.msg]);
+				return console.log(data);
 			});
 		});
 	};

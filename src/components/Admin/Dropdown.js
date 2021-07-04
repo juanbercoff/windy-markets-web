@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
 import ModalCarousel from '../ModalCarousel';
+import DropdownActionButton from './DropdownActionButton';
 
 const Dropdown = ({ tradeValues }) => {
 	const [open, setIsOpen] = useState(false);
@@ -26,19 +27,6 @@ const Dropdown = ({ tradeValues }) => {
 		});
 	};
 
-	const confirmTrade = () => {
-		return fetch('/api/trades/confirm/' + tradeValues.id, {
-			method: 'PUT',
-		}).then((res) => {
-			if (res.status === 200) {
-				return window.location.reload();
-			}
-			res.json().then(() => {
-				return console.log('Trade was confirmed');
-			});
-		});
-	};
-
 	const getImages = () => {
 		return fetch('api/images/tradeImages/' + tradeValues.id, {
 			method: 'GET',
@@ -53,6 +41,10 @@ const Dropdown = ({ tradeValues }) => {
 				console.log(images);
 				setImages(images);
 			});
+	};
+
+	const setClosingAction = () => {
+		setAction('closing');
 	};
 
 	return (
@@ -88,19 +80,12 @@ const Dropdown = ({ tradeValues }) => {
 						>
 							Delete
 						</button>
-						{tradeValues.status === 'filled' ? (
-							<>
-								<button
-									type="button"
-									disabled={tradeValues.status === closedStatus ? true : false}
-									className="dropdown-item"
-									onClick={() => {
-										setAction('closing');
-										return setIsOpen(true);
-									}}
-								>
-									Sell
-								</button>
+						<DropdownActionButton
+							tradeValues={tradeValues}
+							setAction={setClosingAction}
+							setIsOpen={() => setIsOpen(true)}
+						/>
+						{/* 
 								<button
 									type="button"
 									disabled={tradeValues.status === closedStatus ? true : false}
@@ -112,23 +97,7 @@ const Dropdown = ({ tradeValues }) => {
 								>
 									Roll
 								</button>
-							</>
-						) : (
-							<button
-								type="button"
-								disabled={tradeValues.status === closedStatus ? true : false}
-								className="dropdown-item"
-								onClick={() => {
-									if (tradeValues.price) {
-										return confirmTrade();
-									}
-									setAction('confirm');
-									return setIsOpen(true);
-								}}
-							>
-								Confirm
-							</button>
-						)}
+						 */}
 					</div>
 					<div className="dropdown-divider"></div>
 					<button

@@ -72,7 +72,7 @@ function NavBar() {
 			<header className="header">
 				<div className="logo-container">
 					<img src={logo} alt="logo" height="50px" width="auto"></img>
-					<h4>Windy Markets</h4>
+					<h4>Windy Market</h4>
 				</div>
 				<nav className="nav-container">
 					<ul className="nav-links">

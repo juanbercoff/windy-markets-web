@@ -37,7 +37,7 @@ function App() {
 					<OpenTrades requestURL={'/api/trades/current'} />
 				</Route>
 				<Route exact path="/past-trades">
-					<PastTrades requestURL={'http://161.35.8.242/api/trades/past'} />
+					<PastTrades requestURL={'/api/trades/past'} />
 				</Route>
 				<ProtectedRoute exact path="/dashboard" component={AdminDashboard} />
 

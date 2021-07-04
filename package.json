@@ -1,7 +1,7 @@
 {
 	"name": "windy-market-web",
 	"version": "0.1.0",
-	"proxy": "http://161.35.8.242",
+	"proxy": "https://api.windymarket.com",
 	"homepage": "http://windymarket.com",
 	"private": true,
 	"dependencies": {
