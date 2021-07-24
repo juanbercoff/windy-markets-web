@@ -40,11 +40,11 @@ const DropdownActionButton = ({ tradeValues, setAction, setIsOpen }) => {
 	};
 
 	const handleClick = () => {
-		if (tradeValues.status === 'placed') {
+		/* if (tradeValues.status === 'placed') {
 			return confirmTrade();
 		} else if (tradeValues.status === 'filled') {
 			return preSellTrade();
-		}
+		} */
 
 		setAction();
 		setIsOpen();
@@ -59,7 +59,7 @@ const DropdownActionButton = ({ tradeValues, setAction, setIsOpen }) => {
 			className="dropdown-item"
 			onClick={handleClick}
 		>
-			{buttonText()}
+			Sell
 		</button>
 	);
 };
